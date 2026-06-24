@@ -139,12 +139,16 @@ static void U30_CDC_UartTx_Deal(void)
     {
         UINT8 ch = endp4Rxbuff[USBBufOutPoint++];
         USBByteCount--;
-        UART2_SendString(&ch, 1);          /* forward all bytes; no magic 't' */
+
+        if(ch == OWNERSHIP_TOGGLE_CHAR)
+            ownership_request(OWN_REQ_TOGGLE);
+        else
+            UART2_SendString(&ch, 1);
     }
 
     if(DownloadPoint4_Busy == 0)
     {
-        if(USBByteCount == 0 && UploadPoint4_Busy == 0)
+        if(USBByteCount == 0 && UploadPoint4_Busy == 0)   /* allow next OUT */
         {
             USBBufOutPoint = 0;
             DownloadPoint4_Busy = 1;

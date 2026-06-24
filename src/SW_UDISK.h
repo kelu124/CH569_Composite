@@ -135,7 +135,7 @@ extern volatile uint32_t Udisk_Capability;
 
 extern volatile uint8_t UDISK_OutPackflag;
 extern volatile uint8_t UDISK_InPackflag;
-extern volatile uint16_t UDISK_Out_Pack_Len;
+
 
 extern uint8_t  UDISK_Inquity_Tab[ ];
 extern uint8_t  const  UDISK_Rd_Format_Capacity[ ];
@@ -156,7 +156,6 @@ extern void UDISK_Out_EP_Deal( uint8_t *pbuf, uint16_t packlen );
 extern void UDISK_In_EP_Deal( void );
 extern void UDISK_Down_OnePack( void );
 extern void UDISK_onePack_Deal( void );
-extern void msc_read_selftest(void);
 
 #ifdef __cplusplus
 }

@@ -34,9 +34,6 @@
 #define BRIDGE_REQ_SD_OWNER         0x50
 #define BRIDGE_REQ_SD_STATUS        0x51
 
-/* in bridge_config.h, near the other tunables */
-#define MSC_EMMC_GUARD   2000000UL
-
 /* 1 = claim the SD card automatically at power-up (CH569 drives PB10 high and
  * mounts the card immediately, so the drive appears with files without the host
  * pressing 't'). Set to 1 for this bring-up test, where the CH569 owns the card

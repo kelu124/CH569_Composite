@@ -92,7 +92,7 @@ const UINT8 SS_ConfigDescriptor[] =
 
     /* EP3 OUT (MSC data out) */
     0x07, 0x05, 0x03, 0x02, 0x00, 0x04, 0x00,   // bulk, 1024B
-    0x06, 0x30, 0x00, 0x00, 0x00, 0x00,   // companion: burst 0 (=1 pkt), matches DEF_ENDP3_OUT_BURST_LEVEL
+    0x06, 0x30, 0x03, 0x00, 0x00, 0x00,         // companion: burst 3 (vendor)
 
     /* ------------- Interface Association: CDC (IF1 + IF2) --------------- */
     0x08,                  // bLength
@@ -892,7 +892,6 @@ void EP3_OUT_Callback(void)
     uint8_t nump;
 
     USB30_OUT_Status(ENDP_3, &nump, &len, NULL);
-    UDISK_Out_Pack_Len = len;            /* <-- add: hand the length to Down_OnePack */
     USB30_OUT_ClearIT(ENDP_3);
 
     USBSS->UEP3_RX_DMA = (UINT32)(UINT8 *)UDisk_Out_Buf;

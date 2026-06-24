@@ -9,9 +9,7 @@
 * Attention: This software (modified or not) and binary are used for 
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
-#ifndef MSC_EMMC_GUARD
-#define MSC_EMMC_GUARD   2000000UL
-#endif
+
 
 #ifndef __SD_H__
 #define __SD_H__

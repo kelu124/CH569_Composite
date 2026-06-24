@@ -35,9 +35,7 @@ static void ownership_claim(void)
     PRINT("OWN: claiming SD card (PB10 high)\n");
     GPIOB_SetBits(PB10_PIN);
     own_ch569_owns = 1;
-    PRINT("OWN: PB10 set, settling\n");
-    mDelaymS(PB10_SETTLE_MS);
-    PRINT("OWN: settled, mounting\n");   // if this never prints, mDelaymS is the hang
+    mDelaymS(PB10_SETTLE_MS);          /* no ACK from FPGA: assert and proceed */
 
     for(attempt = 0; attempt < SD_MOUNT_RETRIES; attempt++)
     {
@@ -58,7 +56,6 @@ static void ownership_claim(void)
         own_card_ready   = 1;
         PRINT("OWN: card ready, %ld sectors (%ld MB)\n",
               TF_EMMCParam.EMMCSecNum, TF_EMMCParam.EMMCSecNum / 2048);
-        msc_read_selftest();          /* <-- standalone EMMC read, USB not involved */
     }
     else
     {

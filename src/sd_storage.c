@@ -62,7 +62,7 @@ static UINT8 sd_card_init(UINT8 mode)
     UINT8  sta;
     UINT32 i;
 
-    PRINT("SD: CMD0\n"); EMMCResetIdle(&TF_EMMCParam);        /* CMD0 */
+    EMMCResetIdle(&TF_EMMCParam);        /* CMD0 */
     mDelaymS(30);
     EMMCResetIdle(&TF_EMMCParam);
     mDelaymS(30);
@@ -70,11 +70,9 @@ static UINT8 sd_card_init(UINT8 mode)
     /* CMD8: voltage check, mandatory for SD v2+/SDHC/SDXC */
     for(i = 0; i < 3; i++)
     {
-        PRINT("SD: CMD8\n");EMMCSendCmd(0x01AA, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD8);
+        EMMCSendCmd(0x01AA, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD8);
         while(1)
         {
-            PRINT("SD: ACMD41\n");
-            
             sta = CheckCMDComp(&TF_EMMCParam);
             if(sta != CMD_NULL)
                 break;
@@ -124,8 +122,6 @@ UINT8 sd_storage_mount(void)
 
     for(mode = 0; mode < 8; mode++)
     {
-        PRINT("SD: enter mount mode=%d\n", mode);   // in sd_storage_mount, before sd_io_init
-mDelaymS(5);                                  // let the UART FIFO drain
         sd_io_init(mode);
         s = sd_card_init(mode);
         if(s == OP_SUCCESS)

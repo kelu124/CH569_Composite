@@ -1,0 +1,9 @@
+services:
+  # Compile the firmware:    docker compose run --rm build
+  # Clean:                   docker compose run --rm build make clean
+  # Descriptor self-check:   docker compose run --rm build make check
+  build:
+    build: .
+    volumes:
+      - .:/work
+    command: make

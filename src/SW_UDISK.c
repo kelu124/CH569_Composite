@@ -714,30 +714,65 @@ void UDISK_onePack_Deal( void )
 }
 
 /* Bounded single-sector reads (CMD17). No USBSS_IRQn masking. */
+
 static UINT8 msc_read_chunk( UINT8 *buf, UINT32 lba, UINT16 nsec )
 {
-    UINT16 i;
-    UINT32 guard;
+    UINT32 guard; UINT8 s; UINT16 done = 0;
 
-    for( i = 0; i < nsec; i++ )
+    PRINT("rc lba=%ld nsec=%d\n", lba, nsec);
+    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+
+    R16_EMMC_INT_FG    = 0xffff;
+    TF_EMMCParam.EMMCOpErr = 0;
+    R32_EMMC_DMA_BEG1  = (UINT32)buf;
+    R32_EMMC_TRAN_MODE = (1<<4) | (1<<1);
+    R32_EMMC_BLOCK_CFG = (512u) << 16 | nsec;
+    EMMCSendCmd( lba, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD18 );
+
+    guard = MSC_EMMC_GUARD;
+    while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
     {
-        guard = MSC_EMMC_GUARD;
-        while( !(R32_EMMC_STATUS & (1<<17)) )                 /* controller ready */
-            if( --guard == 0 ) return OP_FAILED;
-
-        TF_EMMCParam.EMMCOpErr = 0;
-        R32_EMMC_DMA_BEG1  = (UINT32)(buf + i*512);
-        R32_EMMC_TRAN_MODE = 0;                                /* single block, like SD.c */
-        R32_EMMC_BLOCK_CFG = (TF_EMMCParam.EMMCSecSize) << 16 | 1;
-
-        EMMCSendCmd( lba + i, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD17 );
-
-        guard = MSC_EMMC_GUARD;
-        while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
-            if( TF_EMMCParam.EMMCOpErr || --guard == 0 ) { R16_EMMC_INT_FG = 0xffff; return OP_FAILED; }
-        R16_EMMC_INT_FG = RB_EMMC_IF_CMDDONE | RB_EMMC_IF_TRANDONE;
+        if( R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP ) {
+            R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
+            done++;
+            R32_EMMC_DMA_BEG1 = (UINT32)(buf + done*512);
+        }
+        if( TF_EMMCParam.EMMCOpErr || --guard == 0 ) {
+            PRINT("rc DATA fail fg=%04x err=%04x done=%d g=%ld\n",
+                  R16_EMMC_INT_FG, TF_EMMCParam.EMMCOpErr, done, guard);
+            while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+            R32_EMMC_TRAN_MODE=0; R16_EMMC_INT_FG=0xffff; return OP_FAILED;
+        }
     }
+    R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE | RB_EMMC_IF_CMDDONE;
+
+    PRINT("rc data ok done=%d b510=%02x b511=%02x\n", done, buf[510], buf[511]);
+    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+
+    R32_EMMC_TRAN_MODE = 0;
+    EMMCSendCmd( 0, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_R1b | EMMC_CMD12 );
+
+    guard = MSC_EMMC_GUARD;
+    while( (s = CheckCMDComp(&TF_EMMCParam)) == CMD_NULL )
+        if( --guard == 0 ) {
+            PRINT("rc CMD12 timeout\n");
+            while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+            return OP_FAILED;
+        }
+    R16_EMMC_INT_FG = 0xffff;
+
+    PRINT("rc OK\n");
+    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
     return OP_SUCCESS;
+}
+
+
+void msc_read_selftest(void)
+{
+    static __attribute__((aligned(16))) UINT8 t[512] __attribute__((section(".DMADATA")));
+    UINT8 r = msc_read_chunk(t, 0, 1);                 /* read LBA 0 */
+    PRINT("RDTEST r=%d sig=%02x%02x\n", r, t[510], t[511]);   /* want r=0 sig=55aa */
+    PRINT("SECSIZE=%ld SECNUM=%ld\n", TF_EMMCParam.EMMCSecSize, TF_EMMCParam.EMMCSecNum);
 }
 
 /* Bounded single-sector write (CMD25 + CMD12), mirrors SD.c SDCardWriteONESec. */

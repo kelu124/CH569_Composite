@@ -634,7 +634,7 @@ UINT16 EP0_OUT_Callback(void)
         cdc_line_coding.bDataBits   = endp0RTbuff[6];
 
         CDC_Uart_Init(baudrate);
-        PRINT("CDC: line coding %ld baud\n", baudrate);
+        //PRINT("CDC: line coding %ld baud\n", baudrate);
     }
     return 0;
 }

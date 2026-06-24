@@ -55,6 +55,49 @@ static void sd_io_init(UINT8 mode)
     R8_EMMC_TIMEOUT = 14;
 }
 
+
+/* Single-sector CMD17 read used only to validate an IO mode during mount.
+ * Self-contained so the SD layer doesn't depend on the MSC layer. */
+static UINT8 sd_read_one(UINT8 *buf, UINT32 lba)
+{
+    UINT32 guard;
+    UINT8  s;
+
+    R16_EMMC_INT_FG    = 0xffff;
+    TF_EMMCParam.EMMCOpErr = 0;
+
+    R32_EMMC_DMA_BEG1  = (UINT32)buf;
+    R32_EMMC_TRAN_MODE = (1<<4) | (1<<1);          /* DMA + read, as UDISK_Up_OnePack */
+    R32_EMMC_BLOCK_CFG = (512u) << 16 | 1;         /* one 512-byte block */
+
+    EMMCSendCmd(lba, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD18);  /* read-MULTIPLE */
+
+    guard = MSC_EMMC_GUARD;
+    while(!(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE)) {
+        if(R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP)      /* per-block tick */
+            R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
+        if(TF_EMMCParam.EMMCOpErr || --guard == 0) {
+            PRINT("rd fail fg=%04x err=%04x\n", R16_EMMC_INT_FG, TF_EMMCParam.EMMCOpErr);
+            while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+            R32_EMMC_TRAN_MODE = 0; R16_EMMC_INT_FG = 0xffff;
+            return OP_FAILED;
+        }
+    }
+    R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE | RB_EMMC_IF_CMDDONE;
+
+    R32_EMMC_TRAN_MODE = 0;
+    EMMCSendCmd(0, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_R1b | EMMC_CMD12);  /* STOP */
+    guard = MSC_EMMC_GUARD;
+    while((s = CheckCMDComp(&TF_EMMCParam)) == CMD_NULL)
+        if(--guard == 0) return OP_FAILED;
+    R16_EMMC_INT_FG = 0xffff;
+
+    PRINT("rd ok b0=%02x b510=%02x b511=%02x\n", buf[0], buf[510], buf[511]);
+    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+    return OP_SUCCESS;
+}
+
+
 /*******************************************************************************
  * SD-card identification + switch to 4-bit / full clock.
  ******************************************************************************/
@@ -111,24 +154,43 @@ static UINT8 sd_card_init(UINT8 mode)
     else
         R16_EMMC_CLK_DIV = RB_EMMC_CLKMode | RB_EMMC_CLKOE | 10;
 
+      /* --- NEW: validate a real read at full clock; flip data phase if it fails --- */
+    R32_EMMC_TRAN_MODE = 0;                 /* needed by sd_read_one */
+    if(sd_read_one(sd_scratch, 0) != OP_SUCCESS ||
+        sd_scratch[510] != 0x55 || sd_scratch[511] != 0xAA)
+    {
+        PRINT("SD: read fail at phase A, flipping\n");
+        while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+        R16_EMMC_CLK_DIV ^= RB_EMMC_PHASEINV;          /* flip clock phase only */
+        if(sd_read_one(sd_scratch, 0) != OP_SUCCESS ||
+            sd_scratch[510] != 0x55 || sd_scratch[511] != 0xAA)
+        {
+            /* still failing: try the other sampling edge */
+            R8_EMMC_CONTROL ^= RB_EMMC_NEGSMP;
+            if(sd_read_one(sd_scratch, 0) != OP_SUCCESS)
+            {
+                PRINT("SD: read fails all phases\n");
+                return OP_FAILED;
+            }
+        }
+        PRINT("SD: read OK after phase flip\n");
+    }
+
     return OP_SUCCESS;
 }
+
 
 UINT8 sd_storage_mount(void)
 {
     UINT8 mode, s;
-
-    for(mode = 0; mode < 8; mode++)
-    {
+    for(mode = 0; mode < 8; mode++) {
         sd_io_init(mode);
-        s = sd_card_init(mode);
-        if(s == OP_SUCCESS)
-        {
+        s = sd_card_init(mode);          /* now includes the read+phase validation */
+        if(s == OP_SUCCESS) {
             TF_EMMCParam.EMMCOpErr = 0;
             R32_EMMC_TRAN_MODE = 0;
             PFIC_EnableIRQ(EMMC_IRQn);
-            PRINT("SD: init OK (io mode %d), type %d, %ld sectors\n",
-                  mode, TF_EMMCParam.EMMCType, TF_EMMCParam.EMMCSecNum);
+            PRINT("SD: init OK (io mode %d)\n", mode);
             return OP_SUCCESS;
         }
     }

@@ -16,6 +16,19 @@
 #include "CH56x_usb30.h"
 #include "CH56x_usb20.h"
 #include "CH56xusb30_LIB.h"
+#include "SD.h"
+#include "bridge_config.h"
+
+/* Sectors moved per USB data packet on the MSC read/write path. One 512-byte
+ * sector per packet is the universally-correct value (fits a USB2 HS bulk packet
+ * and a single-burst SS packet) and matches the proven INQUIRY/READ-CAPACITY
+ * send path. Raise later for throughput only with matching SS burst config. */
+#define MSC_CHUNK_SECTORS   1
+#define MSC_CHUNK_BYTES     (MSC_CHUNK_SECTORS * DEF_UDISK_SECTOR_SIZE)
+
+/* Length (bytes) of the WRITE10 data packet the host just delivered on EP3,
+ * stashed by UDISK_Out_EP_Deal for UDISK_Down_OnePack. */
+volatile uint16_t UDISK_Out_Pack_Len = 0;
 /******************************************************************************/
 /* �������������� */
 
@@ -157,13 +170,6 @@ volatile uint16_t UDISK_Pack_Size = DEF_UDISK_PACK_512;
 
 volatile uint8_t UDISK_OutPackflag = 0;
 volatile uint8_t UDISK_InPackflag = 0;
-
-volatile uint16_t UDISK_Out_Pack_Len = 0;   /* bytes in UDisk_Out_Buf this pass */
-
-/* Sectors moved per USB packet. 1 sector = simplest/proven; raise later only with
- * matching burst + multi-block DMA handling. Must be <= UDISKSIZE/512. */
-#define MSC_CHUNK_SECTORS   1
-#define MSC_CHUNK_BYTES     (MSC_CHUNK_SECTORS * 512)
 
 BULK_ONLY_CMD mBOC;
 uint8_t   *pEndp2_Buf;
@@ -554,8 +560,7 @@ void UDISK_Out_EP_Deal( uint8_t *pbuf, uint16_t packlen )
     /* ���ж˵�2�´����ݴ��� */
     if( Udisk_Transfer_Status & DEF_UDISK_BLUCK_DOWN_FLAG )
     {
-//        /* �����´���USB���ݰ� */
-//        UDISK_Down_OnePack( );
+        UDISK_Out_Pack_Len = packlen;     /* hand the packet length to Down_OnePack */
         UDISK_OutPackflag = 1;
     }
     else
@@ -701,117 +706,22 @@ void UDISK_onePack_Deal( void )
         UDISK_OutPackflag = 0;
         UDISK_Down_OnePack();
 
-        if( Udisk_Transfer_Status & DEF_UDISK_BLUCK_DOWN_FLAG )   /* more data expected */
+        /* Re-arm EP3 for the next write-data packet only while the transfer is
+         * still running; after the final packet the CSW has been sent and the
+         * host must not be asked for more data. */
+        if( Udisk_Transfer_Status & DEF_UDISK_BLUCK_DOWN_FLAG )
         {
             if( Link_Sta == LINK_STA_1 )
+            {
                 R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) | UEP_R_RES_ACK;
-            else {
+            }
+            else
+            {
                 USB30_OUT_Set(ENDP_3, ACK, DEF_ENDP3_OUT_BURST_LEVEL);
                 USB30_Send_ERDY(ENDP_3 | OUT, DEF_ENDP3_OUT_BURST_LEVEL);
             }
         }
     }
-}
-
-/* Bounded single-sector reads (CMD17). No USBSS_IRQn masking. */
-
-static UINT8 msc_read_chunk( UINT8 *buf, UINT32 lba, UINT16 nsec )
-{
-    UINT32 guard; UINT8 s; UINT16 done = 0;
-
-    PRINT("rc lba=%ld nsec=%d\n", lba, nsec);
-    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-
-    R16_EMMC_INT_FG    = 0xffff;
-    TF_EMMCParam.EMMCOpErr = 0;
-    R32_EMMC_DMA_BEG1  = (UINT32)buf;
-    R32_EMMC_TRAN_MODE = (1<<4) | (1<<1);
-    R32_EMMC_BLOCK_CFG = (512u) << 16 | nsec;
-    EMMCSendCmd( lba, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD18 );
-
-    guard = MSC_EMMC_GUARD;
-    while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
-    {
-        if( R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP ) {
-            R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
-            done++;
-            R32_EMMC_DMA_BEG1 = (UINT32)(buf + done*512);
-        }
-        if( TF_EMMCParam.EMMCOpErr || --guard == 0 ) {
-            PRINT("rc DATA fail fg=%04x err=%04x done=%d g=%ld\n",
-                  R16_EMMC_INT_FG, TF_EMMCParam.EMMCOpErr, done, guard);
-            while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-            R32_EMMC_TRAN_MODE=0; R16_EMMC_INT_FG=0xffff; return OP_FAILED;
-        }
-    }
-    R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE | RB_EMMC_IF_CMDDONE;
-
-    PRINT("rc data ok done=%d b510=%02x b511=%02x\n", done, buf[510], buf[511]);
-    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-
-    R32_EMMC_TRAN_MODE = 0;
-    EMMCSendCmd( 0, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_R1b | EMMC_CMD12 );
-
-    guard = MSC_EMMC_GUARD;
-    while( (s = CheckCMDComp(&TF_EMMCParam)) == CMD_NULL )
-        if( --guard == 0 ) {
-            PRINT("rc CMD12 timeout\n");
-            while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-            return OP_FAILED;
-        }
-    R16_EMMC_INT_FG = 0xffff;
-
-    PRINT("rc OK\n");
-    while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-    return OP_SUCCESS;
-}
-
-
-void msc_read_selftest(void)
-{
-    static __attribute__((aligned(16))) UINT8 t[512] __attribute__((section(".DMADATA")));
-    UINT8 r = msc_read_chunk(t, 0, 1);                 /* read LBA 0 */
-    PRINT("RDTEST r=%d sig=%02x%02x\n", r, t[510], t[511]);   /* want r=0 sig=55aa */
-    PRINT("SECSIZE=%ld SECNUM=%ld\n", TF_EMMCParam.EMMCSecSize, TF_EMMCParam.EMMCSecNum);
-}
-
-/* Bounded single-sector write (CMD25 + CMD12), mirrors SD.c SDCardWriteONESec. */
-static UINT8 msc_write_chunk( UINT8 *buf, UINT32 lba, UINT16 nsec )
-{
-    UINT16 i;
-    UINT32 guard;
-    UINT8  s;
-
-    for( i = 0; i < nsec; i++ )
-    {
-        guard = MSC_EMMC_GUARD;
-        while( !(R32_EMMC_STATUS & (1<<17)) )
-            if( --guard == 0 ) return OP_FAILED;
-
-        TF_EMMCParam.EMMCOpErr = 0;
-        EMMCSendCmd( lba + i, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD25 );
-        guard = MSC_EMMC_GUARD;
-        while( (s = CheckCMDComp(&TF_EMMCParam)) == CMD_NULL )
-            if( --guard == 0 ) return OP_FAILED;
-        if( s == CMD_FAILED ) return OP_FAILED;
-
-        R32_EMMC_TRAN_MODE = RB_EMMC_DMA_DIR | (1<<6);
-        R32_EMMC_DMA_BEG1  = (UINT32)(buf + i*512);
-        R32_EMMC_BLOCK_CFG = (TF_EMMCParam.EMMCSecSize) << 16 | 1;
-
-        guard = MSC_EMMC_GUARD;
-        while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
-            if( TF_EMMCParam.EMMCOpErr || --guard == 0 ) return OP_FAILED;
-        R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE | RB_EMMC_IF_CMDDONE;
-
-        R32_EMMC_TRAN_MODE = 0;
-        EMMCSendCmd( 0, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_R1b | EMMC_CMD12 );
-        guard = MSC_EMMC_GUARD;
-        while( CheckCMDComp(&TF_EMMCParam) == CMD_NULL )
-            if( --guard == 0 ) return OP_FAILED;
-        R16_EMMC_INT_FG = RB_EMMC_IF_CMDDONE;
-    }
-    return OP_SUCCESS;
 }
 
 /*******************************************************************************
@@ -825,204 +735,53 @@ static UINT8 msc_write_chunk( UINT8 *buf, UINT32 lba, UINT16 nsec )
 *******************************************************************************/
 void UDISK_Up_OnePack( void )
 {
-    /* �ж��Ƿ���Ҫ������������� */
-    UINT8 *pbuf = NULL;
-    UINT16 preqnum = 0 ;
-    UINT8 s;
-    UINT32 cmd_arg_val;
-    UINT16 cmd_set_val;
-    UINT16 sdtran = 0, usbtran = 0;
-    UINT8 sdstep=0, usbstep=0;
-    UINT8 lock = 0, flag = 1;
-    UINT8 uep0rxsave = R8_UEP0_RX_CTRL;
-    UINT8 uep0txsave = R8_UEP0_TX_CTRL;
+    UINT16 nsec, i;
+    UINT32 chunk;
 
-    /* USB�ϴ��������� */
+    /* READ10 data phase, one bounded chunk per call. NO USB-IRQ masking: the USB
+     * ISR (EP0 control + CDC EP4/EP6) keeps running between chunks, so the host's
+     * interleaved control/serial traffic is never starved (the old masked busy-
+     * loop here is what made every control transfer time out at 5 s). Chaining:
+     * while BLUCK_UP is set, EP2_IN_Callback -> UDISK_In_EP_Deal re-sets
+     * UDISK_InPackflag and the main loop calls us again for the next chunk;
+     * clearing BLUCK_UP routes the following EP2_IN to the CSW. */
+    if( UDISK_Transfer_DataLen == 0 )
+    {
+        Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_UP_FLAG;
+        return;
+    }
+
+    chunk = ( UDISK_Transfer_DataLen < MSC_CHUNK_BYTES ) ? UDISK_Transfer_DataLen : MSC_CHUNK_BYTES;
+    nsec  = chunk / DEF_UDISK_SECTOR_SIZE;
+
+    for( i = 0; i < nsec; i++ )
+    {
+        if( SDCardReadOneSec( &TF_EMMCParam, UDisk_In_Buf + i * DEF_UDISK_SECTOR_SIZE,
+                              UDISK_Cur_Sec_Lba + i ) != OP_SUCCESS )
+        {
+            UDISK_CMD_Deal_Status( 0x04, 0x11, 0x01 );   /* MEDIUM ERROR, unrecovered read */
+            UDISK_CMD_Deal_Fail( );                      /* STALL EP2, clears UP flag      */
+            return;
+        }
+    }
+
+    UDISK_Cur_Sec_Lba      += nsec;
+    UDISK_Transfer_DataLen -= chunk;
+    if( UDISK_Transfer_DataLen == 0 )
+        Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_UP_FLAG;
+
     if( Link_Sta == LINK_STA_1 )
     {
-        PFIC_DisableIRQ(USBHS_IRQn);
-
-        R8_UEP0_TX_CTRL = UEP_T_RES_NAK ;
-        R8_UEP0_RX_CTRL = UEP_R_RES_NAK ;
-
-        preqnum = UDISK_Transfer_DataLen/512;
-        UDISK_Transfer_DataLen = 0;
-
-        /* sec 1 */
-        R32_EMMC_DMA_BEG1 = (UINT32)UDisk_In_Buf;                                   //data buffer address
-        R32_EMMC_TRAN_MODE = (1<<4)|(1<<1);                                         //EMMC to controller
-        R32_EMMC_BLOCK_CFG = (512)<<16 | preqnum;
-
-        //cmd18
-        cmd_arg_val = UDISK_Cur_Sec_Lba;
-        cmd_set_val = RB_EMMC_CKIDX |
-                      RB_EMMC_CKCRC |
-                      RESP_TYPE_48  |
-                      EMMC_CMD18;
-        EMMCSendCmd(cmd_arg_val, cmd_set_val);
-
-        while( 1 )
-        {
-
-            if( ( usbtran < (sdtran-1) ) &&  ( (R8_USB_INT_FG & RB_USB_IF_TRANSFER) || flag ) )
-            {
-                flag = 0;
-                R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_NAK;
-                R32_UEP2_TX_DMA = (UINT32)(UINT8 *)( UDisk_In_Buf + usbstep * 512 );
-                R16_UEP2_T_LEN = 512;
-                R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_ACK ;
-
-                R8_USB_INT_FG = RB_USB_IF_TRANSFER;
-
-                usbtran++;
-                usbstep++;
-                if( usbstep == UDISKSIZE/512 )
-                {
-                    usbstep = 0;
-                }
-                if( lock )
-                {
-                    lock = 0;
-                    R32_EMMC_TRAN_MODE = (UINT32)(1<<4);
-                }
-            }
-
-            if( R8_USB_INT_FG & RB_USB_IF_SETUOACT )                   //SETUP interrupt
-            {
-                R8_USB_INT_FG = RB_USB_IF_SETUOACT;              // clear int flag
-            }
-
-            if( R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP )
-            {
-                R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
-                sdtran++;
-                sdstep++;
-                if( sdstep == UDISKSIZE/512 )
-                {
-                    sdstep = 0;
-                }
-                R32_EMMC_DMA_BEG1 =(UINT32)(UINT8 *)(UDisk_In_Buf + sdstep*512);
-                if( (sdtran-usbtran) < ((UDISKSIZE/512)-2) )
-                {
-                    R32_EMMC_TRAN_MODE = (UINT32)(1<<4);
-                }
-                else
-                {
-                    lock = 1;
-                }
-            }
-            else if( R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE )
-            {
-                R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE | RB_EMMC_IF_CMDDONE;
-                sdtran++;
-                sdstep++;
-                break;
-            }
-        }
-
-        while( 1 )
-        {
-            if( ( R8_USB_INT_FG & RB_USB_IF_TRANSFER ) || flag  )
-            {
-                flag = 0;
-
-                R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_NAK;
-                R32_UEP2_TX_DMA = (UINT32)(UINT8 *)( UDisk_In_Buf + usbstep * 512 );
-                R16_UEP2_T_LEN = 512;
-                R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_ACK ;
-
-                R8_USB_INT_FG = RB_USB_IF_TRANSFER;
-
-                usbtran++;
-                usbstep++;
-                if( usbstep == UDISKSIZE/512 )
-                {
-                    usbstep = 0;
-                }
-
-                if( usbtran == sdtran )
-                {
-                    while( !(R8_USB_INT_FG & RB_USB_IF_TRANSFER) );
-                    R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_NAK;
-                    R8_USB_INT_FG = RB_USB_IF_TRANSFER;
-                    break;
-                }
-
-            }
-
-            if( R8_USB_INT_FG & RB_USB_IF_SETUOACT )                   //SETUP interrupt
-            {
-                R8_USB_INT_FG = RB_USB_IF_SETUOACT;              // clear int flag
-            }
-        }
-
-        R32_EMMC_TRAN_MODE = 0;
-        //cmd12
-        cmd_arg_val = 0;
-        cmd_set_val = RB_EMMC_CKIDX |
-                      RB_EMMC_CKCRC |
-                      RESP_TYPE_R1b |
-                      EMMC_CMD12;
-        EMMCSendCmd(cmd_arg_val, cmd_set_val);
-        while(1)
-        {
-            s = CheckCMDComp( &TF_EMMCParam );
-            if( s != CMD_NULL ) break;
-        }
-        R16_EMMC_INT_FG = 0xffff;
-
-        PFIC_EnableIRQ(USBHS_IRQn);
-        R8_UEP0_TX_CTRL = uep0txsave ;
-        R8_UEP0_RX_CTRL = uep0rxsave ;
+        R16_UEP2_T_LEN  = chunk;
+        R32_UEP2_TX_DMA = (UINT32)(UINT8 *)UDisk_In_Buf;
+        R8_UEP2_TX_CTRL = (R8_UEP2_TX_CTRL & ~RB_UEP_TRES_MASK) | UEP_T_RES_ACK;
     }
     else
     {
-        /* ------------ SuperSpeed: one bounded chunk per call ----------------
-         * No USBSS_IRQn masking — EP0 (enumeration + CDC class requests) stays
-         * serviced between chunks. EP2_IN_Callback -> UDISK_In_EP_Deal re-arms
-         * the next chunk, or sends the CSW once the UP flag is cleared. */
-        UINT16 nsec;
-        UINT32 chunk;
-
-        if( UDISK_Transfer_DataLen == 0 )            /* done: CSW handled by EP2 cb */
-        {
-            Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_UP_FLAG;
-            return;
-        }
-
-        chunk = (UDISK_Transfer_DataLen < MSC_CHUNK_BYTES) ? UDISK_Transfer_DataLen : MSC_CHUNK_BYTES;
-        nsec  = chunk / 512;
-
-        if( msc_read_chunk( UDisk_In_Buf, UDISK_Cur_Sec_Lba, nsec ) != OP_SUCCESS )
-        {
-            UDISK_CMD_Deal_Status( 0x04, 0x11, 0x01 );   /* MEDIUM ERROR, unrec read */
-            UDISK_CMD_Deal_Fail();                        /* STALL EP2, clears UP flag */
-            return;
-        }
-
-        UDISK_Cur_Sec_Lba      += nsec;
-        UDISK_Transfer_DataLen -= chunk;
-        if( UDISK_Transfer_DataLen == 0 )                /* last data packet: */
-            Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_UP_FLAG;  /* next EP2 cb -> CSW */
-
         USB30_IN_ClearIT( ENDP_2 );
         USBSS->UEP2_TX_DMA = (UINT32)(UINT8 *)UDisk_In_Buf;
         USB30_IN_Set( ENDP_2, ENABLE, ACK, DEF_ENDP2_IN_BURST_LEVEL, chunk );
         USB30_Send_ERDY( ENDP_2 | IN, DEF_ENDP2_IN_BURST_LEVEL );
-        return;
-    }
-
-    /* ---- USB2 fallback (LINK_STA_1) trailing handling, unchanged ---- */
-    if( UDISK_Transfer_DataLen == 0 )
-    {
-        UDISK_Up_CSW( );
-    }
-    UDISK_Cur_Sec_Lba += preqnum;
-
-    /* �ж������Ƿ�ȫ���ϴ���� */
-     if( UDISK_Transfer_DataLen == 0x00 )
-    {
-        Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_UP_FLAG;
     }
 }
 
@@ -1035,170 +794,32 @@ void UDISK_Up_OnePack( void )
 *******************************************************************************/
 void UDISK_Down_OnePack( void )
 {
-    uint8_t s;
-    uint8_t nump;
-    uint16_t len;
-    uint16_t preqnum;
-    UINT32 cmd_arg_val;
-    UINT16 cmd_set_val;
-    UINT16  sdtran = 0, usbtran = 0;
-    UINT8   sdstep=0, usbstep=0;
-    UINT8  flag = 0 ,full = 0;
-    UINT16 ret_len = 0;
-    UINT8 uep0rxsave = R8_UEP0_RX_CTRL;
-    UINT8 uep0txsave = R8_UEP0_TX_CTRL;
+    UINT16 nsec, i, len;
 
-    if( Link_Sta == LINK_STA_1 )
+    /* WRITE10 data phase, one received packet per call. Bounded single-sector
+     * writes, no USB-IRQ masking (see UDISK_Up_OnePack). The host streams data
+     * packets on EP3; each is written then EP3 is re-armed for the next. */
+    len  = UDISK_Out_Pack_Len;
+    nsec = len / DEF_UDISK_SECTOR_SIZE;
+
+    for( i = 0; i < nsec; i++ )
     {
-        PFIC_DisableIRQ(USBHS_IRQn);
-        R8_UEP0_TX_CTRL = UEP_T_RES_NAK ;
-        R8_UEP0_RX_CTRL = UEP_R_RES_NAK ;
-
-        preqnum = UDISK_Transfer_DataLen/512;
-
-        UDISK_Transfer_DataLen = 0;
-
-        //cmd25
-        cmd_arg_val = UDISK_Cur_Sec_Lba;
-        cmd_set_val = RB_EMMC_CKIDX |
-                      RB_EMMC_CKCRC |
-                      RESP_TYPE_48  |
-                      EMMC_CMD25;
-        EMMCSendCmd(cmd_arg_val, cmd_set_val);
-        while(1)
+        if( SDCardWriteONESec( &TF_EMMCParam, UDisk_Out_Buf + i * DEF_UDISK_SECTOR_SIZE,
+                               UDISK_Cur_Sec_Lba + i ) != OP_SUCCESS )
         {
-            s = CheckCMDComp( &TF_EMMCParam );
-            if( s != CMD_NULL ) break;
+            UDISK_CMD_Deal_Status( 0x03, 0x0C, 0x00 );   /* WRITE ERROR */
+            UDISK_CMD_Deal_Fail( );                      /* STALL EP3, clears DOWN flag */
+            return;
         }
-
-        R32_EMMC_TRAN_MODE = RB_EMMC_DMA_DIR |(1<<6);
-        R32_EMMC_DMA_BEG1 = (UINT32)UDisk_Out_Buf;
-        R32_EMMC_BLOCK_CFG = 512<<16 | preqnum;
-
-        usbtran += 1;
-        usbstep += 1;
-
-        R32_UEP3_RX_DMA = (UINT32)(UINT8 *)(UDisk_Out_Buf + usbstep*512);
-        while(1)
-        {
-            if( R8_USB_INT_FG & RB_USB_IF_SETUOACT )                   //SETUP interrupt
-            {
-                R8_USB_INT_FG = RB_USB_IF_SETUOACT;              // clear int flag
-            }
-
-            if( R8_USB_INT_FG & RB_USB_IF_TRANSFER )
-            {
-                R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) |UEP_R_RES_NAK;
-                usbtran++;
-                usbstep++;
-
-                if( usbstep == UDISKSIZE/512 )
-                {
-                    usbstep = 0;
-                }
-                R32_UEP3_RX_DMA = (UINT32)(UINT8 *)( UDisk_Out_Buf + usbstep * 512 );
-                if( ( usbtran - sdtran ) == UDISKSIZE/512 )
-                {
-                    R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) |UEP_R_RES_NAK;
-                }
-                else
-                {
-                    R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) |UEP_R_RES_ACK;
-                }
-                if( flag )
-                {
-                    R32_EMMC_DMA_BEG1 = (UINT32)(UINT8 *)( UDisk_Out_Buf + sdstep * 512 );
-                    flag = 0;
-                }
-                R8_USB_INT_FG = RB_USB_IF_TRANSFER;
-            }
-
-            if(R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP)
-            {
-                R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
-                sdtran++;
-                sdstep++;
-                if( sdstep == UDISKSIZE/512 )
-                {
-                sdstep = 0;
-                }
-                if(sdtran < usbtran)
-                {
-                R32_EMMC_DMA_BEG1 = (UINT32)(UINT8 *)( UDisk_Out_Buf + sdstep * 512 );
-                }
-                else
-                {
-                flag = 1;
-                }
-                R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) |UEP_R_RES_ACK;
-            }
-            else if(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE)
-            {
-                R16_EMMC_INT_FG = RB_EMMC_IF_TRANDONE;
-
-                R8_UEP3_RX_CTRL = (R8_UEP3_RX_CTRL & ~RB_UEP_RRES_MASK) |UEP_R_RES_NAK;
-                break;
-            }
-        }
-
-        R32_EMMC_TRAN_MODE = 0;
-        //cmd12
-        cmd_arg_val = 0;
-        cmd_set_val = RB_EMMC_CKIDX |
-                      RB_EMMC_CKCRC |
-                      RESP_TYPE_R1b |
-                      EMMC_CMD12;
-        EMMCSendCmd(cmd_arg_val, cmd_set_val);
-        while(1)
-        {
-            s = CheckCMDComp( &TF_EMMCParam );
-            if( s != CMD_NULL ) break;
-        }
-        R16_EMMC_INT_FG = 0xffff;
-
-        R32_UEP3_RX_DMA = (UINT32)(UINT8 *)UDisk_Out_Buf;
-        PFIC_EnableIRQ(USBHS_IRQn);
-        R8_UEP0_TX_CTRL = uep0txsave ;
-        R8_UEP0_RX_CTRL = uep0rxsave ;
-
-    }
-    else
-    {
-        /* ------------ SuperSpeed: consume one EP3 packet, write it -----------
-         * UDISK_Out_Pack_Len holds the bytes the host just delivered into
-         * UDisk_Out_Buf (stashed by EP3_OUT_Callback). No USBSS_IRQn masking;
-         * UDISK_onePack_Deal re-ACKs EP3 for the next packet while more is due. */
-        UINT16 nsec, i, len;
-
-        len  = UDISK_Out_Pack_Len;
-        nsec = len / 512;
-
-        for( i = 0; i < nsec; i++ )
-        {
-            if( msc_write_chunk( UDisk_Out_Buf + i*512, UDISK_Cur_Sec_Lba + i, 1 ) != OP_SUCCESS )
-            {
-                UDISK_CMD_Deal_Status( 0x03, 0x0C, 0x00 );   /* WRITE ERROR */
-                UDISK_CMD_Deal_Fail();                        /* STALL EP3, clears DOWN */
-                return;
-            }
-        }
-
-        UDISK_Cur_Sec_Lba += nsec;
-        UDISK_Transfer_DataLen = (UDISK_Transfer_DataLen >= len) ? (UDISK_Transfer_DataLen - len) : 0;
-
-        if( UDISK_Transfer_DataLen == 0 )
-        {
-            Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_DOWN_FLAG;
-            UDISK_Up_CSW();
-        }
-        return;
     }
 
-    /* ---- USB2 fallback (LINK_STA_1) trailing handling, unchanged ---- */
+    UDISK_Cur_Sec_Lba += nsec;
+    UDISK_Transfer_DataLen = ( UDISK_Transfer_DataLen >= len ) ? ( UDISK_Transfer_DataLen - len ) : 0;
+
     if( UDISK_Transfer_DataLen == 0 )
     {
         Udisk_Transfer_Status &= ~DEF_UDISK_BLUCK_DOWN_FLAG;
-        UDISK_Up_CSW();
+        UDISK_Up_CSW( );
     }
 }
 
@@ -1212,9 +833,9 @@ void UDISK_Down_OnePack( void )
 void EMMC_IRQHandler(void)
 {
     UINT16 fg = R16_EMMC_INT_FG;
-    if(fg)
+    if(fg)                                   //Error interrupt
     {
-        TF_EMMCParam.EMMCOpErr = fg;   /* latch so polled read/write loops can see it */
-        R16_EMMC_INT_FG = fg;          /* CLEAR — without this the IRQ re-fires forever */
+        TF_EMMCParam.EMMCOpErr = fg;         //latch so the (bounded) wait loops can see it
+        R16_EMMC_INT_FG = fg;                //CLEAR — otherwise this re-fires forever (IRQ storm)
     }
 }

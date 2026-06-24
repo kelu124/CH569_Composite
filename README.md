@@ -97,6 +97,19 @@ The flashed image is ~21 KB (`.bin`). The DMA ring buffers are RAM-only
 Everything tunable lives in `src/bridge_config.h`: VID/PID, the `t` toggle
 byte, `CLAIM_ON_BOOT`, PB10 settle time, SD retry count, default UART baud.
 
+## Host setup note (Linux)
+
+On Linux, **ModemManager** probes any CDC-ACM port on plug-in (cycling baud
+rates, sending AT strings). Since this device exposes two ACM ports, tell MM to
+ignore it so it doesn't poke the bridge:
+
+```
+# /etc/udev/rules.d/99-ch569-nomm.rules
+ACTION=="add|change", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="fe2c", ENV{ID_MM_DEVICE_IGNORE}="1"
+```
+`sudo udevadm control --reload-rules`, then replug. (Forwarded bytes are now
+harmless anyway — ownership is control-request only — but this stops the noise.)
+
 ## Known limitations (by design, for this bring-up)
 
 - **USB2 fallback is drive-only.** If the link trains at high-speed instead of

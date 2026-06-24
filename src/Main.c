@@ -8,9 +8,9 @@
  *   - UART2 (PA2/PA3, the FPGA link) is exposed as a CDC-ACM virtual COM port.
  *
  * SD ownership: PB10 high asks the FPGA to release the card; low gives it
- * back (see ownership.c). Controlled via the EP0 vendor control request
- * (bridge_config.h). At boot the FPGA owns the card; the host sees "no medium"
- * until ownership is claimed.
+ * back (see ownership.c). Toggle via the 't' byte on the CDC port or the
+ * vendor control request (bridge_config.h). At boot the FPGA owns the card;
+ * the host sees "no medium" until ownership is claimed.
  *
  * On a USB2-only link the device falls back to MSC-only (no COM port) — the
  * vendor USB2 stack has no CDC function; see README "USB2 fallback".
@@ -119,7 +119,7 @@ int main(void)
     while(1)
     {
         UDISK_onePack_Deal();   /* MSC multi-sector transfers (EMMC <-> USB) */
-        CDC_Uart_Deal();        /* CDC <-> UART2 pump (verbatim byte forwarding) */
+        CDC_Uart_Deal();        /* CDC <-> UART2 pump + 't' ownership toggle */
         ownership_poll();       /* executes pending PB10 claim/release       */
 #if DEBUG_OVER_USB
         debug_cdc_poll();       /* stream debug log out the 2nd CDC port     */

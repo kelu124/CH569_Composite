@@ -16,13 +16,6 @@
 #ifndef BRIDGE_CONFIG_H_
 #define BRIDGE_CONFIG_H_
 
-/* Bounded spin guard for EMMC command/data completion waits. Finite so an
- * unanswered card fails the mount/read instead of hanging the device forever.
- * Iteration count, not time: at 80 MHz this is ~tens of ms for a tight loop.
- * The ACMD41/SDReadOCR power-up poll has its own multi-second retry budget.
- * Single source of truth, visible to SW_UDISK.c, SD.c and sd_storage.c. */
-#define MSC_EMMC_GUARD   2000000UL
-
 /* USB identity (SuperSpeed composite). 0x1A86 = WCH; PID picked to avoid the
  * stock example PIDs (FE10 MSC / FE0C CDC) so cached host drivers don't clash. */
 #define BRIDGE_USB_VID_L            0x86
@@ -30,11 +23,9 @@
 #define BRIDGE_USB_PID_L            0x2C
 #define BRIDGE_USB_PID_H            0xFE
 
-/* The CDC port no longer interprets any data byte as an ownership command: a
- * magic byte (formerly 't') tore down a live mass-storage device whenever a
- * host probed the port. Ownership now changes ONLY via the EP0 vendor request
- * BRIDGE_REQ_SD_OWNER below.
- * #define OWNERSHIP_TOGGLE_CHAR       't'  -- removed (see TOCHANGE.md Step 5) */
+/* NOTE: the raw-'t'-byte ownership trigger was removed. A data byte that tears
+ * down a mounted disk is unsafe (any host/ModemManager probe can send 't').
+ * SD ownership is changed only via the EP0 vendor request below. */
 
 /* Out-of-band alternative to the toggle byte: vendor control request on EP0.
  *   bmRequestType 0x40, bRequest 0x50, wValue 0=release / 1=claim / 2=toggle
@@ -66,10 +57,17 @@
 /* Debug log UART1 baud rate (PA8 = TX, PA7 = RX). */
 #define DEBUG_UART_BAUD             115200
 
+/* Bounded spin-guard for every EMMC command/data completion wait. Finite so an
+ * unanswered / unreachable card fails the mount cleanly instead of hanging the
+ * whole device (and starving USB) forever. Iteration count, not time: at 80 MHz
+ * this is order tens of ms, comfortably longer than any single command/block,
+ * shorter than the host's timeouts. */
+#define MSC_EMMC_GUARD              2000000UL
+
 /* 1 = also expose the debug log as a SECOND, read-only USB CDC port (a second
  * /dev/ttyACMx), so the log can be read over USB without wiring UART1. The
  * first CDC port stays the FPGA-UART bridge. */
-#define DEBUG_OVER_USB              0
+#define DEBUG_OVER_USB              1
 
 /* Status LEDs on PB22/PB23/PB24 (LEDs on the WCH eval board):
  *   PB22 = CH569 owns the SD card (PB10 high)

@@ -130,10 +130,8 @@ static void U30_CDC_UartRx_Deal(void)
  * @fn        U30_CDC_UartTx_Deal
  *
  * @brief     USB host -> UART(FPGA): drain EP4 OUT data into UART2, one byte
- *            per pass. ALL bytes are forwarded verbatim — there is no magic
- *            data byte. SD ownership changes only via the EP0 vendor request
- *            BRIDGE_REQ_SD_OWNER, never via the data stream (a probe byte must
- *            never tear down a live mass-storage device).
+ *            per pass. Every byte is forwarded verbatim; ownership is changed
+ *            only via the EP0 vendor request (never a data byte).
  ******************************************************************************/
 static void U30_CDC_UartTx_Deal(void)
 {
@@ -141,7 +139,11 @@ static void U30_CDC_UartTx_Deal(void)
     {
         UINT8 ch = endp4Rxbuff[USBBufOutPoint++];
         USBByteCount--;
-        UART2_SendString(&ch, 1);          /* forward ALL bytes; no magic 't' */
+        /* Forward every byte verbatim to the FPGA UART. SD ownership is changed
+         * ONLY via the EP0 vendor request (bridge_config.h) — never a magic data
+         * byte. A raw 't' trigger here is unsafe: any host probe (ModemManager,
+         * a terminal, a script) sending 't' would tear down a mounted disk. */
+        UART2_SendString(&ch, 1);
     }
 
     if(DownloadPoint4_Busy == 0)

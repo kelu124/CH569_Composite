@@ -1,13 +1,10 @@
 /********************************************************************************
  * cdc_uart.h — CDC-ACM <-> UART2 (FPGA link) bridge.
  *
- * Adapted from the WCH SimulateCDC example with one change:
- *   1. CDC data moved from EP2 to EP4 (EP2/EP3 belong to the MSC function in
- *      the composite device).
- * Every byte is forwarded verbatim to/from UART2; the port carries no in-band
- * control bytes. SD ownership is controlled only by the EP0 vendor request
- * (the former 't' toggle byte was removed — it unmounted a live disk under
- * host probing). See bridge_config.h / USB30_NonStandardReq.
+ * Adapted from the WCH SimulateCDC example: CDC data moved from EP2 to EP4
+ * (EP2/EP3 belong to the MSC function in the composite device). All bytes are
+ * forwarded verbatim — SD ownership is changed only via the EP0 vendor request,
+ * never a data byte (a magic 't' could be sent by any host probe).
  *
  * UART2 = PA2 (RX) / PA3 (TX), the board's FPGA link. The FPGA currently
  * echoes everything. Default 115200 8N1; CDC SET_LINE_CODING re-baudss it.

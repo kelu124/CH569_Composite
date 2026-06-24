@@ -91,7 +91,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 build/src/CH56x_usb20.o
  .bss           0x0000000000000000        0x0 build/src/CH56x_usb20.o
  .text.USB20_Device_Setaddress
-                0x0000000000000000        0xe build/src/CH56x_usb20.o
+                0x0000000000000000        0xa build/src/CH56x_usb20.o
  .DMADATA       0x0000000000000000       0x10 build/src/CH56x_usb20.o
  .sbss.seq_num  0x0000000000000000        0x4 build/src/CH56x_usb20.o
  .text          0x0000000000000000        0x0 build/src/SW_UDISK.o
@@ -102,10 +102,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/src/SD.o
  .data          0x0000000000000000        0x0 build/src/SD.o
  .bss           0x0000000000000000        0x0 build/src/SD.o
- .text.SDCardReadOneSec
-                0x0000000000000000       0x72 build/src/SD.o
- .text.SDCardWriteONESec
-                0x0000000000000000       0xfa build/src/SD.o
  .text          0x0000000000000000        0x0 build/src/sd_storage.o
  .data          0x0000000000000000        0x0 build/src/sd_storage.o
  .bss           0x0000000000000000        0x0 build/src/sd_storage.o
@@ -115,17 +111,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/src/debug_cdc.o
  .data          0x0000000000000000        0x0 build/src/debug_cdc.o
  .bss           0x0000000000000000        0x0 build/src/debug_cdc.o
- .debug_info    0x0000000000000000       0x6c build/src/debug_cdc.o
- .debug_abbrev  0x0000000000000000       0x26 build/src/debug_cdc.o
- .debug_aranges
-                0x0000000000000000       0x18 build/src/debug_cdc.o
- .debug_line    0x0000000000000000       0x35 build/src/debug_cdc.o
- .debug_str     0x0000000000000000      0x117 build/src/debug_cdc.o
- .debug_line_str
-                0x0000000000000000       0x2c build/src/debug_cdc.o
- .comment       0x0000000000000000       0x34 build/src/debug_cdc.o
- .riscv.attributes
-                0x0000000000000000       0x34 build/src/debug_cdc.o
  .text          0x0000000000000000        0x0 build/src/ownership.o
  .data          0x0000000000000000        0x0 build/src/ownership.o
  .bss           0x0000000000000000        0x0 build/src/ownership.o
@@ -133,18 +118,18 @@ Discarded input sections
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_clk.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_clk.o
  .text.GetSysClock
-                0x0000000000000000       0x4a build/sdk/Peripheral/src/CH56x_clk.o
+                0x0000000000000000       0x4c build/sdk/Peripheral/src/CH56x_clk.o
  .text          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_emmc.o
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_emmc.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCIO0Init
-                0x0000000000000000       0x7a build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x80 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCReadOCR
-                0x0000000000000000       0x8c build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x92 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCSetRCA
-                0x0000000000000000       0x4a build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x4c build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCReadCSD
-                0x0000000000000000       0x76 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x7e build/sdk/Peripheral/src/CH56x_emmc.o
  .text.ReadEMMCStatus
                 0x0000000000000000       0x32 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCSetBusWidth
@@ -154,19 +139,19 @@ Discarded input sections
  .text.EMMCIOTransErrorDeal
                 0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardReadEXCSD
-                0x0000000000000000       0x42 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x44 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardConfig
-                0x0000000000000000      0x132 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000      0x136 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardConfig_N
-                0x0000000000000000      0x134 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000      0x140 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardReadOneSec
-                0x0000000000000000       0x50 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x54 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardReadMulSec
-                0x0000000000000000       0x8a build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0x96 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.EMMCCardWriteMulSec
-                0x0000000000000000       0xc4 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000       0xce build/sdk/Peripheral/src/CH56x_emmc.o
  .text.AES_EMMCWriteMulSec
-                0x0000000000000000      0x10c build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000000      0x124 build/sdk/Peripheral/src/CH56x_emmc.o
  .text.AES_EMMCReadMulSec
                 0x0000000000000000      0x126 build/sdk/Peripheral/src/CH56x_emmc.o
  .DMADATA       0x0000000000000000      0x200 build/sdk/Peripheral/src/CH56x_emmc.o
@@ -174,41 +159,43 @@ Discarded input sections
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_gpio.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_gpio.o
  .text.GPIOA_ITModeCfg
-                0x0000000000000000       0xaa build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000000000       0xc6 build/sdk/Peripheral/src/CH56x_gpio.o
  .text.GPIOB_ITModeCfg
-                0x0000000000000000      0x32e build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000000000      0x3b0 build/sdk/Peripheral/src/CH56x_gpio.o
  .text.GPIOPinRemap
-                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_gpio.o
- .text.GPIOMco  0x0000000000000000       0x4a build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000000000       0x1c build/sdk/Peripheral/src/CH56x_gpio.o
+ .text.GPIOMco  0x0000000000000000       0x3e build/sdk/Peripheral/src/CH56x_gpio.o
  .text          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_pwr.o
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_pwr.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_pwr.o
  .text.PWR_PeriphClkCfg
-                0x0000000000000000       0x2e build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x34 build/sdk/Peripheral/src/CH56x_pwr.o
  .text.PWR_PeriphWakeUpCfg
-                0x0000000000000000       0x52 build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x3a build/sdk/Peripheral/src/CH56x_pwr.o
  .text.LowPower_Idle
                 0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_pwr.o
  .text.LowPower_Halt
                 0x0000000000000000       0x2c build/sdk/Peripheral/src/CH56x_pwr.o
  .text.LowPower_Sleep
-                0x0000000000000000       0x38 build/sdk/Peripheral/src/CH56x_pwr.o
- .debug_info    0x0000000000000000      0x39a build/sdk/Peripheral/src/CH56x_pwr.o
- .debug_abbrev  0x0000000000000000      0x132 build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x3c build/sdk/Peripheral/src/CH56x_pwr.o
+ .debug_info    0x0000000000000000      0x3b1 build/sdk/Peripheral/src/CH56x_pwr.o
+ .debug_abbrev  0x0000000000000000      0x13a build/sdk/Peripheral/src/CH56x_pwr.o
  .debug_loclists
-                0x0000000000000000       0x64 build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x6e build/sdk/Peripheral/src/CH56x_pwr.o
  .debug_aranges
                 0x0000000000000000       0x40 build/sdk/Peripheral/src/CH56x_pwr.o
  .debug_rnglists
-                0x0000000000000000       0x3a build/sdk/Peripheral/src/CH56x_pwr.o
- .debug_line    0x0000000000000000      0x2f6 build/sdk/Peripheral/src/CH56x_pwr.o
- .debug_str     0x0000000000000000      0x24e build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x2b build/sdk/Peripheral/src/CH56x_pwr.o
+ .debug_line    0x0000000000000000      0x284 build/sdk/Peripheral/src/CH56x_pwr.o
+ .debug_str     0x0000000000000000      0x265 build/sdk/Peripheral/src/CH56x_pwr.o
  .debug_line_str
-                0x0000000000000000       0x8c build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x97 build/sdk/Peripheral/src/CH56x_pwr.o
  .comment       0x0000000000000000       0x34 build/sdk/Peripheral/src/CH56x_pwr.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_pwr.o
  .debug_frame   0x0000000000000000       0x60 build/sdk/Peripheral/src/CH56x_pwr.o
  .riscv.attributes
-                0x0000000000000000       0x38 build/sdk/Peripheral/src/CH56x_pwr.o
+                0x0000000000000000       0x5b build/sdk/Peripheral/src/CH56x_pwr.o
  .text          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_sys.o
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_sys.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_sys.o
@@ -217,36 +204,38 @@ Discarded input sections
  .text.SYS_ResetExecute
                 0x0000000000000000       0x26 build/sdk/Peripheral/src/CH56x_sys.o
  .text.WWDG_ITCfg
-                0x0000000000000000       0x36 build/sdk/Peripheral/src/CH56x_sys.o
+                0x0000000000000000       0x38 build/sdk/Peripheral/src/CH56x_sys.o
  .text.WWDG_ResetCfg
-                0x0000000000000000       0x36 build/sdk/Peripheral/src/CH56x_sys.o
+                0x0000000000000000       0x38 build/sdk/Peripheral/src/CH56x_sys.o
  .text.WWDG_ClearFlag
                 0x0000000000000000       0x26 build/sdk/Peripheral/src/CH56x_sys.o
+ .text.debug_mirror
+                0x0000000000000000        0x2 build/sdk/Peripheral/src/CH56x_sys.o
  .text          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_timer.o
  .data          0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_timer.o
  .bss           0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR1_TimerInit
-                0x0000000000000000       0x18 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR2_TimerInit
-                0x0000000000000000       0x18 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR0_EXTSignalCounterInit
                 0x0000000000000000       0x14 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR1_EXTSignalCounterInit
-                0x0000000000000000       0x18 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR2_EXTSignalCounterInit
-                0x0000000000000000       0x18 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR0_PWMInit
-                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR1_PWMInit
-                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR2_PWMInit
-                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR0_CapInit
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR1_CapInit
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR2_CapInit
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR1_DMACfg
                 0x0000000000000000       0x28 build/sdk/Peripheral/src/CH56x_timer.o
  .text.TMR2_DMACfg
@@ -263,21 +252,21 @@ Discarded input sections
  .text.UART3_DefInit
                 0x0000000000000000       0x2a build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART0_BaudRateCfg
-                0x0000000000000000       0x22 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART1_BaudRateCfg
-                0x0000000000000000       0x22 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART2_BaudRateCfg
-                0x0000000000000000       0x22 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART3_BaudRateCfg
-                0x0000000000000000       0x22 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x1e build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART0_ByteTrigCfg
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART1_ByteTrigCfg
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART3_ByteTrigCfg
-                0x0000000000000000       0x1a build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x16 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART0_INTCfg
-                0x0000000000000000       0x32 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x34 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART1_INTCfg
                 0x0000000000000000       0x32 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART3_INTCfg
@@ -291,17 +280,17 @@ Discarded input sections
  .text.UART3_Reset
                 0x0000000000000000        0xe build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART0_SendString
-                0x0000000000000000       0x30 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x32 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART1_SendString
-                0x0000000000000000       0x30 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x34 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART3_SendString
-                0x0000000000000000       0x30 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x34 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART0_RecvString
-                0x0000000000000000       0x24 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x2c build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART1_RecvString
-                0x0000000000000000       0x24 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x30 build/sdk/Peripheral/src/CH56x_uart.o
  .text.UART3_RecvString
-                0x0000000000000000       0x24 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000000       0x30 build/sdk/Peripheral/src/CH56x_uart.o
  .text          0x0000000000000000        0x0 build/sdk/RVMSIS/core_riscv.o
  .data          0x0000000000000000        0x0 build/sdk/RVMSIS/core_riscv.o
  .bss           0x0000000000000000        0x0 build/sdk/RVMSIS/core_riscv.o
@@ -347,20 +336,24 @@ Discarded input sections
                 0x0000000000000000        0x6 build/sdk/RVMSIS/core_riscv.o
  .text.__get_SP
                 0x0000000000000000        0x4 build/sdk/RVMSIS/core_riscv.o
- .debug_info    0x0000000000000000      0x37e build/sdk/RVMSIS/core_riscv.o
- .debug_abbrev  0x0000000000000000       0xe7 build/sdk/RVMSIS/core_riscv.o
+ .debug_info    0x0000000000000000      0x3cc build/sdk/RVMSIS/core_riscv.o
+ .debug_abbrev  0x0000000000000000       0xed build/sdk/RVMSIS/core_riscv.o
+ .debug_loclists
+                0x0000000000000000       0x9b build/sdk/RVMSIS/core_riscv.o
  .debug_aranges
                 0x0000000000000000       0xc0 build/sdk/RVMSIS/core_riscv.o
  .debug_rnglists
-                0x0000000000000000       0xca build/sdk/RVMSIS/core_riscv.o
- .debug_line    0x0000000000000000      0x3da build/sdk/RVMSIS/core_riscv.o
- .debug_str     0x0000000000000000      0x239 build/sdk/RVMSIS/core_riscv.o
+                0x0000000000000000       0x8b build/sdk/RVMSIS/core_riscv.o
+ .debug_line    0x0000000000000000      0x3b2 build/sdk/RVMSIS/core_riscv.o
+ .debug_str     0x0000000000000000      0x250 build/sdk/RVMSIS/core_riscv.o
  .debug_line_str
-                0x0000000000000000       0xb4 build/sdk/RVMSIS/core_riscv.o
+                0x0000000000000000      0x14a build/sdk/RVMSIS/core_riscv.o
  .comment       0x0000000000000000       0x34 build/sdk/RVMSIS/core_riscv.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/RVMSIS/core_riscv.o
  .debug_frame   0x0000000000000000      0x160 build/sdk/RVMSIS/core_riscv.o
  .riscv.attributes
-                0x0000000000000000       0x38 build/sdk/RVMSIS/core_riscv.o
+                0x0000000000000000       0x5b build/sdk/RVMSIS/core_riscv.o
  .text          0x0000000000000000        0x0 build/sdk/Startup/startup_CH56x.o
  .data          0x0000000000000000        0x0 build/sdk/Startup/startup_CH56x.o
  .bss           0x0000000000000000        0x0 build/sdk/Startup/startup_CH56x.o
@@ -622,7 +615,7 @@ END GROUP
  *ISPEM569.o(*)
                 0x0000000000000000                . = ALIGN (0x4)
 
-.text           0x00000000000000c0     0x5530
+.text           0x00000000000000c0     0x50cc
                 0x00000000000000c0                . = ALIGN (0x4)
  *(.text)
  .text          0x00000000000000c0      0x4f0 sdk/USB30Lib/libCH56x_USB30_device_lib.a(usb30_int.o)
@@ -655,536 +648,540 @@ END GROUP
  .text          0x00000000000005c6       0x10 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memset.o)
                 0x00000000000005c6                memset
  *(.text.*)
- .text.led_set  0x00000000000005d6       0x1a build/src/Main.o
+ .text.led_set  0x00000000000005d6       0x16 build/src/Main.o
  .text.DebugInit
-                0x00000000000005f0       0x52 build/src/Main.o
-                0x00000000000005f0                DebugInit
+                0x00000000000005ec       0x58 build/src/Main.o
+                0x00000000000005ec                DebugInit
  .text.startup.main
-                0x0000000000000642       0xfc build/src/Main.o
-                0x0000000000000642                main
+                0x0000000000000644      0x106 build/src/Main.o
+                0x0000000000000644                main
  .text.PFIC_DisableIRQ
-                0x000000000000073e       0x1a build/src/CH56x_usb30.o
+                0x000000000000074a       0x1a build/src/CH56x_usb30.o
  .text.USB30D_init.part.0
-                0x0000000000000758       0x92 build/src/CH56x_usb30.o
+                0x0000000000000764       0xca build/src/CH56x_usb30.o
  .text.USB30D_init
-                0x00000000000007ea       0x28 build/src/CH56x_usb30.o
-                0x00000000000007ea                USB30D_init
+                0x000000000000082e       0x28 build/src/CH56x_usb30.o
+                0x000000000000082e                USB30D_init
  .text.USB30_NonStandardReq
-                0x0000000000000812      0x124 build/src/CH56x_usb30.o
-                0x0000000000000812                USB30_NonStandardReq
+                0x0000000000000856      0x126 build/src/CH56x_usb30.o
+                0x0000000000000856                USB30_NonStandardReq
  .text.USB30_StandardReq
-                0x0000000000000936      0x2d4 build/src/CH56x_usb30.o
-                0x0000000000000936                USB30_StandardReq
+                0x000000000000097c      0x378 build/src/CH56x_usb30.o
+                0x000000000000097c                USB30_StandardReq
  .text.EP0_IN_Callback
-                0x0000000000000c0a       0x6a build/src/CH56x_usb30.o
-                0x0000000000000c0a                EP0_IN_Callback
+                0x0000000000000cf4       0x6a build/src/CH56x_usb30.o
+                0x0000000000000cf4                EP0_IN_Callback
  .text.EP0_OUT_Callback
-                0x0000000000000c74       0x72 build/src/CH56x_usb30.o
-                0x0000000000000c74                EP0_OUT_Callback
+                0x0000000000000d5e       0x82 build/src/CH56x_usb30.o
+                0x0000000000000d5e                EP0_OUT_Callback
  .text.USB30_Setup_Status
-                0x0000000000000ce6       0x14 build/src/CH56x_usb30.o
-                0x0000000000000ce6                USB30_Setup_Status
+                0x0000000000000de0       0x14 build/src/CH56x_usb30.o
+                0x0000000000000de0                USB30_Setup_Status
  .text.USBSS_IRQHandler
-                0x0000000000000cfa       0x4c build/src/CH56x_usb30.o
-                0x0000000000000cfa                USBSS_IRQHandler
+                0x0000000000000df4       0x4c build/src/CH56x_usb30.o
+                0x0000000000000df4                USBSS_IRQHandler
  .text.TMR0_IRQHandler
-                0x0000000000000d46       0xd4 build/src/CH56x_usb30.o
-                0x0000000000000d46                TMR0_IRQHandler
+                0x0000000000000e40       0xd8 build/src/CH56x_usb30.o
+                0x0000000000000e40                TMR0_IRQHandler
  .text.LINK_IRQHandler
-                0x0000000000000e1a      0x306 build/src/CH56x_usb30.o
-                0x0000000000000e1a                LINK_IRQHandler
+                0x0000000000000f18      0x306 build/src/CH56x_usb30.o
+                0x0000000000000f18                LINK_IRQHandler
  .text.EP1_IN_Callback
-                0x0000000000001120        0x2 build/src/CH56x_usb30.o
-                0x0000000000001120                EP1_IN_Callback
+                0x000000000000121e        0x2 build/src/CH56x_usb30.o
+                0x000000000000121e                EP1_IN_Callback
  .text.EP2_IN_Callback
-                0x0000000000001122       0x20 build/src/CH56x_usb30.o
-                0x0000000000001122                EP2_IN_Callback
+                0x0000000000001220       0x20 build/src/CH56x_usb30.o
+                0x0000000000001220                EP2_IN_Callback
  .text.EP3_IN_Callback
-                0x0000000000001142        0x2 build/src/CH56x_usb30.o
-                0x0000000000001142                EP3_IN_Callback
+                0x0000000000001240        0x2 build/src/CH56x_usb30.o
+                0x0000000000001240                EP3_IN_Callback
  .text.EP4_IN_Callback
-                0x0000000000001144       0x22 build/src/CH56x_usb30.o
-                0x0000000000001144                EP4_IN_Callback
+                0x0000000000001242       0x22 build/src/CH56x_usb30.o
+                0x0000000000001242                EP4_IN_Callback
  .text.EP5_IN_Callback
-                0x0000000000001166        0x2 build/src/CH56x_usb30.o
-                0x0000000000001166                EP5_IN_Callback
+                0x0000000000001264        0x2 build/src/CH56x_usb30.o
+                0x0000000000001264                EP5_IN_Callback
  .text.EP6_IN_Callback
-                0x0000000000001168       0x1c build/src/CH56x_usb30.o
-                0x0000000000001168                EP6_IN_Callback
+                0x0000000000001266       0x22 build/src/CH56x_usb30.o
+                0x0000000000001266                EP6_IN_Callback
  .text.EP7_IN_Callback
-                0x0000000000001184        0x2 build/src/CH56x_usb30.o
-                0x0000000000001184                EP7_IN_Callback
+                0x0000000000001288        0x2 build/src/CH56x_usb30.o
+                0x0000000000001288                EP7_IN_Callback
  .text.EP1_OUT_Callback
-                0x0000000000001186        0x2 build/src/CH56x_usb30.o
-                0x0000000000001186                EP1_OUT_Callback
+                0x000000000000128a        0x2 build/src/CH56x_usb30.o
+                0x000000000000128a                EP1_OUT_Callback
  .text.EP2_OUT_Callback
-                0x0000000000001188        0x2 build/src/CH56x_usb30.o
-                0x0000000000001188                EP2_OUT_Callback
+                0x000000000000128c        0x2 build/src/CH56x_usb30.o
+                0x000000000000128c                EP2_OUT_Callback
  .text.EP3_OUT_Callback
-                0x000000000000118a       0x6a build/src/CH56x_usb30.o
-                0x000000000000118a                EP3_OUT_Callback
+                0x000000000000128e       0x62 build/src/CH56x_usb30.o
+                0x000000000000128e                EP3_OUT_Callback
  .text.EP4_OUT_Callback
-                0x00000000000011f4       0x36 build/src/CH56x_usb30.o
-                0x00000000000011f4                EP4_OUT_Callback
+                0x00000000000012f0       0x36 build/src/CH56x_usb30.o
+                0x00000000000012f0                EP4_OUT_Callback
  .text.EP5_OUT_Callback
-                0x000000000000122a        0x2 build/src/CH56x_usb30.o
-                0x000000000000122a                EP5_OUT_Callback
+                0x0000000000001326        0x2 build/src/CH56x_usb30.o
+                0x0000000000001326                EP5_OUT_Callback
  .text.EP6_OUT_Callback
-                0x000000000000122c        0x2 build/src/CH56x_usb30.o
-                0x000000000000122c                EP6_OUT_Callback
+                0x0000000000001328       0x42 build/src/CH56x_usb30.o
+                0x0000000000001328                EP6_OUT_Callback
  .text.EP7_OUT_Callback
-                0x000000000000122e        0x2 build/src/CH56x_usb30.o
-                0x000000000000122e                EP7_OUT_Callback
+                0x000000000000136a        0x2 build/src/CH56x_usb30.o
+                0x000000000000136a                EP7_OUT_Callback
  .text.USB30_ITP_Callback
-                0x0000000000001230        0x2 build/src/CH56x_usb30.o
-                0x0000000000001230                USB30_ITP_Callback
+                0x000000000000136c        0x2 build/src/CH56x_usb30.o
+                0x000000000000136c                USB30_ITP_Callback
  .text.USB20_Endp_Init
-                0x0000000000001232       0x62 build/src/CH56x_usb20.o
-                0x0000000000001232                USB20_Endp_Init
+                0x000000000000136e       0x6a build/src/CH56x_usb20.o
+                0x000000000000136e                USB20_Endp_Init
  .text.USB20_Device_Init
-                0x0000000000001294       0x24 build/src/CH56x_usb20.o
-                0x0000000000001294                USB20_Device_Init
+                0x00000000000013d8       0x24 build/src/CH56x_usb20.o
+                0x00000000000013d8                USB20_Device_Init
  .text.U20_NonStandard_Request_Deal
-                0x00000000000012b8       0x42 build/src/CH56x_usb20.o
-                0x00000000000012b8                U20_NonStandard_Request_Deal
+                0x00000000000013fc       0x42 build/src/CH56x_usb20.o
+                0x00000000000013fc                U20_NonStandard_Request_Deal
  .text.U20_Standard_Request_Deal
-                0x00000000000012fa      0x324 build/src/CH56x_usb20.o
-                0x00000000000012fa                U20_Standard_Request_Deal
+                0x000000000000143e      0x312 build/src/CH56x_usb20.o
+                0x000000000000143e                U20_Standard_Request_Deal
  .text.U20_Endp0_IN_Callback
-                0x000000000000161e       0x82 build/src/CH56x_usb20.o
-                0x000000000000161e                U20_Endp0_IN_Callback
+                0x0000000000001750       0x7c build/src/CH56x_usb20.o
+                0x0000000000001750                U20_Endp0_IN_Callback
  .text.USBHS_IRQHandler
-                0x00000000000016a0      0x246 build/src/CH56x_usb20.o
-                0x00000000000016a0                USBHS_IRQHandler
- .text.msc_read_chunk
-                0x00000000000018e6      0x168 build/src/SW_UDISK.o
+                0x00000000000017cc      0x27a build/src/CH56x_usb20.o
+                0x00000000000017cc                USBHS_IRQHandler
  .text.UDISK_CMD_Deal_Fail
-                0x0000000000001a4e       0x86 build/src/SW_UDISK.o
-                0x0000000000001a4e                UDISK_CMD_Deal_Fail
+                0x0000000000001a46       0x86 build/src/SW_UDISK.o
+                0x0000000000001a46                UDISK_CMD_Deal_Fail
  .text.CMD_RD_WR_Deal_Pre
-                0x0000000000001ad4       0x70 build/src/SW_UDISK.o
-                0x0000000000001ad4                CMD_RD_WR_Deal_Pre
+                0x0000000000001acc       0x70 build/src/SW_UDISK.o
+                0x0000000000001acc                CMD_RD_WR_Deal_Pre
  .text.UDISK_SCSI_CMD_Deal
-                0x0000000000001b44      0x3d2 build/src/SW_UDISK.o
-                0x0000000000001b44                UDISK_SCSI_CMD_Deal
+                0x0000000000001b3c      0x3d2 build/src/SW_UDISK.o
+                0x0000000000001b3c                UDISK_SCSI_CMD_Deal
  .text.UDISK_Bulk_UpData
-                0x0000000000001f16       0xb4 build/src/SW_UDISK.o
-                0x0000000000001f16                UDISK_Bulk_UpData
+                0x0000000000001f0e       0xb4 build/src/SW_UDISK.o
+                0x0000000000001f0e                UDISK_Bulk_UpData
  .text.UDISK_Up_CSW
-                0x0000000000001fca       0xb4 build/src/SW_UDISK.o
-                0x0000000000001fca                UDISK_Up_CSW
+                0x0000000000001fc2       0xb4 build/src/SW_UDISK.o
+                0x0000000000001fc2                UDISK_Up_CSW
  .text.UDISK_In_EP_Deal
-                0x000000000000207e       0x2a build/src/SW_UDISK.o
-                0x000000000000207e                UDISK_In_EP_Deal
+                0x0000000000002076       0x2a build/src/SW_UDISK.o
+                0x0000000000002076                UDISK_In_EP_Deal
  .text.UDISK_Out_EP_Deal
-                0x00000000000020a8       0x86 build/src/SW_UDISK.o
-                0x00000000000020a8                UDISK_Out_EP_Deal
- .text.msc_read_selftest
-                0x000000000000212e       0x48 build/src/SW_UDISK.o
-                0x000000000000212e                msc_read_selftest
+                0x00000000000020a0       0x8a build/src/SW_UDISK.o
+                0x00000000000020a0                UDISK_Out_EP_Deal
  .text.UDISK_Up_OnePack
-                0x0000000000002176      0x36a build/src/SW_UDISK.o
-                0x0000000000002176                UDISK_Up_OnePack
+                0x000000000000212a      0x154 build/src/SW_UDISK.o
+                0x000000000000212a                UDISK_Up_OnePack
  .text.UDISK_Down_OnePack
-                0x00000000000024e0      0x38e build/src/SW_UDISK.o
-                0x00000000000024e0                UDISK_Down_OnePack
+                0x000000000000227e       0xd0 build/src/SW_UDISK.o
+                0x000000000000227e                UDISK_Down_OnePack
  .text.UDISK_onePack_Deal
-                0x000000000000286e       0x6e build/src/SW_UDISK.o
-                0x000000000000286e                UDISK_onePack_Deal
+                0x000000000000234e       0x6c build/src/SW_UDISK.o
+                0x000000000000234e                UDISK_onePack_Deal
  .text.EMMC_IRQHandler
-                0x00000000000028dc       0x2c build/src/SW_UDISK.o
-                0x00000000000028dc                EMMC_IRQHandler
+                0x00000000000023ba       0x2c build/src/SW_UDISK.o
+                0x00000000000023ba                EMMC_IRQHandler
+ .text.SD_WaitTranDone
+                0x00000000000023e6       0x28 build/src/SD.o
+ .text.SD_WaitCmd
+                0x000000000000240e       0x2c build/src/SD.o
  .text.SDReadOCR
-                0x0000000000002908      0x124 build/src/SD.o
-                0x0000000000002908                SDReadOCR
+                0x000000000000243a       0xb8 build/src/SD.o
+                0x000000000000243a                SDReadOCR
  .text.SDSetRCA
-                0x0000000000002a2c       0x50 build/src/SD.o
-                0x0000000000002a2c                SDSetRCA
+                0x00000000000024f2       0x36 build/src/SD.o
+                0x00000000000024f2                SDSetRCA
  .text.SDReadCSD
-                0x0000000000002a7c       0xac build/src/SD.o
-                0x0000000000002a7c                SDReadCSD
+                0x0000000000002528       0x8e build/src/SD.o
+                0x0000000000002528                SDReadCSD
  .text.SDSetBusWidth
-                0x0000000000002b28       0x7a build/src/SD.o
-                0x0000000000002b28                SDSetBusWidth
+                0x00000000000025b6       0x5a build/src/SD.o
+                0x00000000000025b6                SDSetBusWidth
  .text.SD_ReadSCR
-                0x0000000000002ba2       0xb6 build/src/SD.o
-                0x0000000000002ba2                SD_ReadSCR
- .text.sd_read_one.constprop.0
-                0x0000000000002c58      0x112 build/src/sd_storage.o
+                0x0000000000002610       0x8c build/src/SD.o
+                0x0000000000002610                SD_ReadSCR
+ .text.SDCardReadOneSec
+                0x000000000000269c       0x74 build/src/SD.o
+                0x000000000000269c                SDCardReadOneSec
+ .text.SDCardWriteONESec
+                0x0000000000002710       0xcc build/src/SD.o
+                0x0000000000002710                SDCardWriteONESec
  .text.sd_storage_mount
-                0x0000000000002d6a      0x2de build/src/sd_storage.o
-                0x0000000000002d6a                sd_storage_mount
+                0x00000000000027dc      0x2b0 build/src/sd_storage.o
+                0x00000000000027dc                sd_storage_mount
  .text.sd_storage_unmount
-                0x0000000000003048       0x26 build/src/sd_storage.o
-                0x0000000000003048                sd_storage_unmount
+                0x0000000000002a8c       0x26 build/src/sd_storage.o
+                0x0000000000002a8c                sd_storage_unmount
  .text.CDC_Uart_Init
-                0x000000000000306e       0x86 build/src/cdc_uart.o
-                0x000000000000306e                CDC_Uart_Init
+                0x0000000000002ab2       0x8a build/src/cdc_uart.o
+                0x0000000000002ab2                CDC_Uart_Init
  .text.TMR2_TimerInit1
-                0x00000000000030f4       0x34 build/src/cdc_uart.o
-                0x00000000000030f4                TMR2_TimerInit1
+                0x0000000000002b3c       0x34 build/src/cdc_uart.o
+                0x0000000000002b3c                TMR2_TimerInit1
  .text.TMR2_IRQHandler
-                0x0000000000003128       0x30 build/src/cdc_uart.o
-                0x0000000000003128                TMR2_IRQHandler
+                0x0000000000002b70       0x30 build/src/cdc_uart.o
+                0x0000000000002b70                TMR2_IRQHandler
  .text.CDC_Uart_Deal
-                0x0000000000003158      0x192 build/src/cdc_uart.o
-                0x0000000000003158                CDC_Uart_Deal
+                0x0000000000002ba0      0x192 build/src/cdc_uart.o
+                0x0000000000002ba0                CDC_Uart_Deal
  .text.CDC_Variable_Clear
-                0x00000000000032ea       0x26 build/src/cdc_uart.o
-                0x00000000000032ea                CDC_Variable_Clear
+                0x0000000000002d32       0x26 build/src/cdc_uart.o
+                0x0000000000002d32                CDC_Variable_Clear
  .text.UART2_IRQHandler
-                0x0000000000003310      0x122 build/src/cdc_uart.o
-                0x0000000000003310                UART2_IRQHandler
- .text.ownership_release
-                0x0000000000003432       0x38 build/src/ownership.o
- .text.ownership_claim
-                0x000000000000346a       0xec build/src/ownership.o
- .text.ownership_init
-                0x0000000000003556       0x26 build/src/ownership.o
-                0x0000000000003556                ownership_init
- .text.ownership_request
-                0x000000000000357c        0x6 build/src/ownership.o
-                0x000000000000357c                ownership_request
- .text.ownership_poll
-                0x0000000000003582       0x3e build/src/ownership.o
-                0x0000000000003582                ownership_poll
- .text.SystemInit
-                0x00000000000035c0       0xfa build/sdk/Peripheral/src/CH56x_clk.o
-                0x00000000000035c0                SystemInit
- .text.CheckCMDComp
-                0x00000000000036ba       0x22 build/sdk/Peripheral/src/CH56x_emmc.o
-                0x00000000000036ba                CheckCMDComp
- .text.EMMCResetIdle
-                0x00000000000036dc       0x24 build/sdk/Peripheral/src/CH56x_emmc.o
-                0x00000000000036dc                EMMCResetIdle
- .text.EMMCReadCID
-                0x0000000000003700       0x42 build/sdk/Peripheral/src/CH56x_emmc.o
-                0x0000000000003700                EMMCReadCID
- .text.SelectEMMCCard
-                0x0000000000003742       0x2e build/sdk/Peripheral/src/CH56x_emmc.o
-                0x0000000000003742                SelectEMMCCard
- .text.GPIOA_ModeCfg
-                0x0000000000003770      0x112 build/sdk/Peripheral/src/CH56x_gpio.o
-                0x0000000000003770                GPIOA_ModeCfg
- .text.GPIOB_ModeCfg
-                0x0000000000003882      0x112 build/sdk/Peripheral/src/CH56x_gpio.o
-                0x0000000000003882                GPIOB_ModeCfg
- .text.Delay_Init
-                0x0000000000003994       0x22 build/sdk/Peripheral/src/CH56x_sys.o
-                0x0000000000003994                Delay_Init
- .text.mDelayuS
-                0x00000000000039b6       0x2e build/sdk/Peripheral/src/CH56x_sys.o
-                0x00000000000039b6                mDelayuS
- .text.mDelaymS
-                0x00000000000039e4       0x2e build/sdk/Peripheral/src/CH56x_sys.o
-                0x00000000000039e4                mDelaymS
+                0x0000000000002d58      0x124 build/src/cdc_uart.o
+                0x0000000000002d58                UART2_IRQHandler
  .text.debug_mirror
-                0x0000000000003a12        0x2 build/sdk/Peripheral/src/CH56x_sys.o
-                0x0000000000003a12                debug_mirror
- .text._write   0x0000000000003a14       0x44 build/sdk/Peripheral/src/CH56x_sys.o
-                0x0000000000003a14                _write
+                0x0000000000002e7c       0x4e build/src/debug_cdc.o
+                0x0000000000002e7c                debug_mirror
+ .text.debug_cdc_clear
+                0x0000000000002eca        0xe build/src/debug_cdc.o
+                0x0000000000002eca                debug_cdc_clear
+ .text.debug_cdc_poll
+                0x0000000000002ed8       0x9c build/src/debug_cdc.o
+                0x0000000000002ed8                debug_cdc_poll
+ .text.ownership_release
+                0x0000000000002f74       0x38 build/src/ownership.o
+ .text.ownership_claim
+                0x0000000000002fac       0xc8 build/src/ownership.o
+ .text.ownership_init
+                0x0000000000003074       0x26 build/src/ownership.o
+                0x0000000000003074                ownership_init
+ .text.ownership_request
+                0x000000000000309a        0x6 build/src/ownership.o
+                0x000000000000309a                ownership_request
+ .text.ownership_poll
+                0x00000000000030a0       0x40 build/src/ownership.o
+                0x00000000000030a0                ownership_poll
+ .text.SystemInit
+                0x00000000000030e0       0xfe build/sdk/Peripheral/src/CH56x_clk.o
+                0x00000000000030e0                SystemInit
+ .text.CheckCMDComp
+                0x00000000000031de       0x26 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x00000000000031de                CheckCMDComp
+ .text.EMMCResetIdle
+                0x0000000000003204       0x24 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000003204                EMMCResetIdle
+ .text.EMMCReadCID
+                0x0000000000003228       0x4e build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000003228                EMMCReadCID
+ .text.SelectEMMCCard
+                0x0000000000003276       0x2e build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000003276                SelectEMMCCard
+ .text.GPIOA_ModeCfg
+                0x00000000000032a4      0x180 build/sdk/Peripheral/src/CH56x_gpio.o
+                0x00000000000032a4                GPIOA_ModeCfg
+ .text.GPIOB_ModeCfg
+                0x0000000000003424      0x180 build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000003424                GPIOB_ModeCfg
+ .text.Delay_Init
+                0x00000000000035a4       0x22 build/sdk/Peripheral/src/CH56x_sys.o
+                0x00000000000035a4                Delay_Init
+ .text.mDelayuS
+                0x00000000000035c6       0x2a build/sdk/Peripheral/src/CH56x_sys.o
+                0x00000000000035c6                mDelayuS
+ .text.mDelaymS
+                0x00000000000035f0       0x2a build/sdk/Peripheral/src/CH56x_sys.o
+                0x00000000000035f0                mDelaymS
+ .text._write   0x000000000000361a       0x4c build/sdk/Peripheral/src/CH56x_sys.o
+                0x000000000000361a                _write
  .text.TMR0_TimerInit
-                0x0000000000003a58       0x14 build/sdk/Peripheral/src/CH56x_timer.o
-                0x0000000000003a58                TMR0_TimerInit
+                0x0000000000003666       0x14 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000003666                TMR0_TimerInit
  .text.UART2_ByteTrigCfg
-                0x0000000000003a6c       0x1a build/sdk/Peripheral/src/CH56x_uart.o
-                0x0000000000003a6c                UART2_ByteTrigCfg
+                0x000000000000367a       0x16 build/sdk/Peripheral/src/CH56x_uart.o
+                0x000000000000367a                UART2_ByteTrigCfg
  .text.UART2_INTCfg
-                0x0000000000003a86       0x32 build/sdk/Peripheral/src/CH56x_uart.o
-                0x0000000000003a86                UART2_INTCfg
+                0x0000000000003690       0x32 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000003690                UART2_INTCfg
  .text.UART2_SendString
-                0x0000000000003ab8       0x30 build/sdk/Peripheral/src/CH56x_uart.o
-                0x0000000000003ab8                UART2_SendString
+                0x00000000000036c2       0x34 build/sdk/Peripheral/src/CH56x_uart.o
+                0x00000000000036c2                UART2_SendString
  .text.UART2_RecvString
-                0x0000000000003ae8       0x24 build/sdk/Peripheral/src/CH56x_uart.o
-                0x0000000000003ae8                UART2_RecvString
+                0x00000000000036f6       0x30 build/sdk/Peripheral/src/CH56x_uart.o
+                0x00000000000036f6                UART2_RecvString
  .text.vector_handler
-                0x0000000000003b0c        0x2 build/sdk/Startup/startup_CH56x.o
-                0x0000000000003b0c                GPIO_IRQHandler
-                0x0000000000003b0c                HardFault_Handler
-                0x0000000000003b0c                SysTick_Handler
-                0x0000000000003b0c                NMI_Handler
-                0x0000000000003b0c                UART1_IRQHandler
-                0x0000000000003b0c                UART0_IRQHandler
-                0x0000000000003b0c                PMT_IRQHandler
-                0x0000000000003b0c                SPI1_IRQHandler
-                0x0000000000003b0c                ECDC_IRQHandler
-                0x0000000000003b0c                DVP_IRQHandler
-                0x0000000000003b0c                ETH_IRQHandler
-                0x0000000000003b0c                SW_Handler
-                0x0000000000003b0c                SPI0_IRQHandler
-                0x0000000000003b0c                WDOG_IRQHandler
-                0x0000000000003b0c                HSPI_IRQHandler
-                0x0000000000003b0c                UART3_IRQHandler
-                0x0000000000003b0c                TMR1_IRQHandler
-                0x0000000000003b0c                SERDES_IRQHandler
+                0x0000000000003726        0x2 build/sdk/Startup/startup_CH56x.o
+                0x0000000000003726                GPIO_IRQHandler
+                0x0000000000003726                HardFault_Handler
+                0x0000000000003726                SysTick_Handler
+                0x0000000000003726                NMI_Handler
+                0x0000000000003726                UART1_IRQHandler
+                0x0000000000003726                UART0_IRQHandler
+                0x0000000000003726                PMT_IRQHandler
+                0x0000000000003726                SPI1_IRQHandler
+                0x0000000000003726                ECDC_IRQHandler
+                0x0000000000003726                DVP_IRQHandler
+                0x0000000000003726                ETH_IRQHandler
+                0x0000000000003726                SW_Handler
+                0x0000000000003726                SPI0_IRQHandler
+                0x0000000000003726                WDOG_IRQHandler
+                0x0000000000003726                HSPI_IRQHandler
+                0x0000000000003726                UART3_IRQHandler
+                0x0000000000003726                TMR1_IRQHandler
+                0x0000000000003726                SERDES_IRQHandler
  .text.handle_reset
-                0x0000000000003b0e       0x94 build/sdk/Startup/startup_CH56x.o
-                0x0000000000003b0e                handle_reset
- .text.printf   0x0000000000003ba2       0x3a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
-                0x0000000000003ba2                printf
-                0x0000000000003ba2                iprintf
- .text._puts_r  0x0000000000003bdc      0x10e /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
-                0x0000000000003bdc                _puts_r
- .text.puts     0x0000000000003cea        0xa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
-                0x0000000000003cea                puts
+                0x0000000000003728       0x98 build/sdk/Startup/startup_CH56x.o
+                0x0000000000003728                handle_reset
+ .text.printf   0x00000000000037c0       0x3a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
+                0x00000000000037c0                printf
+                0x00000000000037c0                iprintf
+ .text._puts_r  0x00000000000037fa      0x10e /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
+                0x00000000000037fa                _puts_r
+ .text.puts     0x0000000000003908        0xa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
+                0x0000000000003908                puts
  .text.__swbuf_r
-                0x0000000000003cf4       0xc0 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
-                0x0000000000003cf4                __swbuf_r
+                0x0000000000003912       0xc0 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
+                0x0000000000003912                __swbuf_r
  .text.__swsetup_r
-                0x0000000000003db4       0xfa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
-                0x0000000000003db4                __swsetup_r
+                0x00000000000039d2       0xfa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
+                0x00000000000039d2                __swsetup_r
  .text.__sflush_r
-                0x0000000000003eae      0x138 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
-                0x0000000000003eae                __sflush_r
+                0x0000000000003acc      0x138 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
+                0x0000000000003acc                __sflush_r
  .text._fflush_r
-                0x0000000000003fe6       0x8a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
-                0x0000000000003fe6                _fflush_r
- .text.std      0x0000000000004070       0x6a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003c04       0x8a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
+                0x0000000000003c04                _fflush_r
+ .text.std      0x0000000000003c8e       0x6a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x00000000000040da        0xa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x00000000000040da                _cleanup_r
+                0x0000000000003cf8        0xa /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003cf8                _cleanup_r
  .text.__sfmoreglue
-                0x00000000000040e4       0x46 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x00000000000040e4                __sfmoreglue
+                0x0000000000003d02       0x46 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d02                __sfmoreglue
  .text.__sfp_lock_acquire
-                0x000000000000412a        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x000000000000412a                __sfp_lock_acquire
+                0x0000000000003d48        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d48                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x0000000000004130        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x0000000000004130                __sfp_lock_release
+                0x0000000000003d4e        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d4e                __sfp_lock_release
  .text.__sinit_lock_acquire
-                0x0000000000004136        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x0000000000004136                __sinit_lock_acquire
+                0x0000000000003d54        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d54                __sinit_lock_acquire
  .text.__sinit_lock_release
-                0x000000000000413c        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x000000000000413c                __sinit_lock_release
- .text.__sinit  0x0000000000004142       0x72 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x0000000000004142                __sinit
- .text.__sfp    0x00000000000041b4       0xb0 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x00000000000041b4                __sfp
+                0x0000000000003d5a        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d5a                __sinit_lock_release
+ .text.__sinit  0x0000000000003d60       0x72 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003d60                __sinit
+ .text.__sfp    0x0000000000003dd2       0xb0 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000003dd2                __sfp
  .text._fwalk_reent
-                0x0000000000004264       0x6a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
-                0x0000000000004264                _fwalk_reent
+                0x0000000000003e82       0x6a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
+                0x0000000000003e82                _fwalk_reent
  .text.__retarget_lock_init_recursive
-                0x00000000000042ce        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x00000000000042ce                __retarget_lock_init_recursive
+                0x0000000000003eec        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+                0x0000000000003eec                __retarget_lock_init_recursive
  .text.__retarget_lock_acquire_recursive
-                0x00000000000042d0        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x00000000000042d0                __retarget_lock_acquire_recursive
+                0x0000000000003eee        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+                0x0000000000003eee                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x00000000000042d2        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x00000000000042d2                __retarget_lock_release_recursive
+                0x0000000000003ef0        0x2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+                0x0000000000003ef0                __retarget_lock_release_recursive
  .text.__swhatbuf_r
-                0x00000000000042d4       0x5c /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
-                0x00000000000042d4                __swhatbuf_r
+                0x0000000000003ef2       0x5c /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
+                0x0000000000003ef2                __swhatbuf_r
  .text.__smakebuf_r
-                0x0000000000004330       0xa6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
-                0x0000000000004330                __smakebuf_r
- .text._free_r  0x00000000000043d6       0xa2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
-                0x00000000000043d6                _free_r
+                0x0000000000003f4e       0xa6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
+                0x0000000000003f4e                __smakebuf_r
+ .text._free_r  0x0000000000003ff4       0xa2 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
+                0x0000000000003ff4                _free_r
  .text.sbrk_aligned
-                0x0000000000004478       0x5a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000000004096       0x5a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
  .text._malloc_r
-                0x00000000000044d2      0x112 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
-                0x00000000000044d2                _malloc_r
+                0x00000000000040f0      0x112 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000000040f0                _malloc_r
  .text.__sfputc_r
-                0x00000000000045e4       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000000004202       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x000000000000460e       0x44 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000000000460e                __sfputs_r
+                0x000000000000422c       0x44 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000422c                __sfputs_r
  .text._vfprintf_r
-                0x0000000000004652      0x2da /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x0000000000004652                _vfiprintf_r
-                0x0000000000004652                _vfprintf_r
+                0x0000000000004270      0x2da /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000000004270                _vfiprintf_r
+                0x0000000000004270                _vfprintf_r
  .text._printf_common
-                0x000000000000492c      0x110 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000000000492c                _printf_common
+                0x000000000000454a      0x110 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000454a                _printf_common
  .text._printf_i
-                0x0000000000004a3c      0x284 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0000000000004a3c                _printf_i
- .text._sbrk_r  0x0000000000004cc0       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
-                0x0000000000004cc0                _sbrk_r
- .text.__sread  0x0000000000004ce6       0x30 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
-                0x0000000000004ce6                __sread
+                0x000000000000465a      0x284 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000465a                _printf_i
+ .text._sbrk_r  0x00000000000048de       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
+                0x00000000000048de                _sbrk_r
+ .text.__sread  0x0000000000004904       0x30 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+                0x0000000000004904                __sread
  .text.__swrite
-                0x0000000000004d16       0x4e /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
-                0x0000000000004d16                __swrite
- .text.__sseek  0x0000000000004d64       0x36 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
-                0x0000000000004d64                __sseek
+                0x0000000000004934       0x4e /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+                0x0000000000004934                __swrite
+ .text.__sseek  0x0000000000004982       0x36 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+                0x0000000000004982                __sseek
  .text.__sclose
-                0x0000000000004d9a        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
-                0x0000000000004d9a                __sclose
+                0x00000000000049b8        0x6 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+                0x00000000000049b8                __sclose
  .text._write_r
-                0x0000000000004da0       0x2c /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
-                0x0000000000004da0                _write_r
+                0x00000000000049be       0x2c /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
+                0x00000000000049be                _write_r
  .text._close_r
-                0x0000000000004dcc       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
-                0x0000000000004dcc                _close_r
+                0x00000000000049ea       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
+                0x00000000000049ea                _close_r
  .text._fstat_r
-                0x0000000000004df2       0x28 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
-                0x0000000000004df2                _fstat_r
+                0x0000000000004a10       0x28 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
+                0x0000000000004a10                _fstat_r
  .text._isatty_r
-                0x0000000000004e1a       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
-                0x0000000000004e1a                _isatty_r
+                0x0000000000004a38       0x26 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
+                0x0000000000004a38                _isatty_r
  .text._lseek_r
-                0x0000000000004e40       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
-                0x0000000000004e40                _lseek_r
- .text.memchr   0x0000000000004e6a       0x1a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
-                0x0000000000004e6a                memchr
+                0x0000000000004a5e       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
+                0x0000000000004a5e                _lseek_r
+ .text.memchr   0x0000000000004a88       0x1a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
+                0x0000000000004a88                memchr
  .text.__malloc_lock
-                0x0000000000004e84        0x8 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
-                0x0000000000004e84                __malloc_lock
+                0x0000000000004aa2        0x8 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
+                0x0000000000004aa2                __malloc_lock
  .text.__malloc_unlock
-                0x0000000000004e8c        0x8 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
-                0x0000000000004e8c                __malloc_unlock
- .text._read_r  0x0000000000004e94       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
-                0x0000000000004e94                _read_r
- .text._close   0x0000000000004ebe        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
-                0x0000000000004ebe                _close
- .text._fstat   0x0000000000004eca        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
-                0x0000000000004eca                _fstat
- .text._isatty  0x0000000000004ed6        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
-                0x0000000000004ed6                _isatty
- .text._lseek   0x0000000000004ee2        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
-                0x0000000000004ee2                _lseek
- .text._read    0x0000000000004eee        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
-                0x0000000000004eee                _read
- .text._sbrk    0x0000000000004efa       0x1c /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
-                0x0000000000004efa                _sbrk
+                0x0000000000004aaa        0x8 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
+                0x0000000000004aaa                __malloc_unlock
+ .text._read_r  0x0000000000004ab2       0x2a /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
+                0x0000000000004ab2                _read_r
+ .text._close   0x0000000000004adc        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
+                0x0000000000004adc                _close
+ .text._fstat   0x0000000000004ae8        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
+                0x0000000000004ae8                _fstat
+ .text._isatty  0x0000000000004af4        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
+                0x0000000000004af4                _isatty
+ .text._lseek   0x0000000000004b00        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
+                0x0000000000004b00                _lseek
+ .text._read    0x0000000000004b0c        0xc /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
+                0x0000000000004b0c                _read
+ .text._sbrk    0x0000000000004b18       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
+                0x0000000000004b18                _sbrk
  *(.rodata)
  *(.rodata*)
- *fill*         0x0000000000004f16        0x2 
  .rodata.main.str1.4
-                0x0000000000004f18       0x36 build/src/Main.o
- *fill*         0x0000000000004f4e        0x2 
+                0x0000000000004b38       0x36 build/src/Main.o
+ *fill*         0x0000000000004b6e        0x2 
  .rodata.USB30_StandardReq
-                0x0000000000004f50       0x30 build/src/CH56x_usb30.o
+                0x0000000000004b70       0x48 build/src/CH56x_usb30.o
+ .rodata.EP0_OUT_Callback.str1.4
+                0x0000000000004bb8       0x1b build/src/CH56x_usb30.o
+ *fill*         0x0000000000004bd3        0x1 
  .rodata.TMR0_IRQHandler.str1.4
-                0x0000000000004f80       0x2b build/src/CH56x_usb30.o
- *fill*         0x0000000000004fab        0x1 
+                0x0000000000004bd4       0x2b build/src/CH56x_usb30.o
+ *fill*         0x0000000000004bff        0x1 
  .rodata.BOSDescriptor
-                0x0000000000004fac       0x16 build/src/CH56x_usb30.o
-                0x0000000000004fac                BOSDescriptor
- *fill*         0x0000000000004fc2        0x2 
+                0x0000000000004c00       0x16 build/src/CH56x_usb30.o
+                0x0000000000004c00                BOSDescriptor
+ *fill*         0x0000000000004c16        0x2 
  .rodata.OSStringDescriptor
-                0x0000000000004fc4       0x12 build/src/CH56x_usb30.o
-                0x0000000000004fc4                OSStringDescriptor
- *fill*         0x0000000000004fd6        0x2 
+                0x0000000000004c18       0x12 build/src/CH56x_usb30.o
+                0x0000000000004c18                OSStringDescriptor
+ *fill*         0x0000000000004c2a        0x2 
  .rodata.StringProduct
-                0x0000000000004fd8       0x2a build/src/CH56x_usb30.o
-                0x0000000000004fd8                StringProduct
- *fill*         0x0000000000005002        0x2 
+                0x0000000000004c2c       0x2a build/src/CH56x_usb30.o
+                0x0000000000004c2c                StringProduct
+ *fill*         0x0000000000004c56        0x2 
  .rodata.SS_ConfigDescriptor
-                0x0000000000005004       0x80 build/src/CH56x_usb30.o
-                0x0000000000005004                SS_ConfigDescriptor
+                0x0000000000004c58       0xd4 build/src/CH56x_usb30.o
+                0x0000000000004c58                SS_ConfigDescriptor
  .rodata.SS_DeviceDescriptor
-                0x0000000000005084       0x12 build/src/CH56x_usb30.o
-                0x0000000000005084                SS_DeviceDescriptor
- *fill*         0x0000000000005096        0x2 
+                0x0000000000004d2c       0x12 build/src/CH56x_usb30.o
+                0x0000000000004d2c                SS_DeviceDescriptor
+ *fill*         0x0000000000004d3e        0x2 
  .rodata.U20_Standard_Request_Deal
-                0x0000000000005098       0x30 build/src/CH56x_usb20.o
+                0x0000000000004d40       0x30 build/src/CH56x_usb20.o
  .rodata.hs_bos_descriptor
-                0x00000000000050c8       0x16 build/src/CH56x_usb20.o
-                0x00000000000050c8                hs_bos_descriptor
- *fill*         0x00000000000050de        0x2 
+                0x0000000000004d70       0x16 build/src/CH56x_usb20.o
+                0x0000000000004d70                hs_bos_descriptor
+ *fill*         0x0000000000004d86        0x2 
  .rodata.hs_string_descriptor2
-                0x00000000000050e0       0x26 build/src/CH56x_usb20.o
-                0x00000000000050e0                hs_string_descriptor2
- *fill*         0x0000000000005106        0x2 
+                0x0000000000004d88       0x26 build/src/CH56x_usb20.o
+                0x0000000000004d88                hs_string_descriptor2
+ *fill*         0x0000000000004dae        0x2 
  .rodata.hs_config_descriptor
-                0x0000000000005108       0x20 build/src/CH56x_usb20.o
-                0x0000000000005108                hs_config_descriptor
+                0x0000000000004db0       0x20 build/src/CH56x_usb20.o
+                0x0000000000004db0                hs_config_descriptor
  .rodata.hs_device_descriptor
-                0x0000000000005128       0x12 build/src/CH56x_usb20.o
-                0x0000000000005128                hs_device_descriptor
- *fill*         0x000000000000513a        0x2 
- .rodata.msc_read_chunk.str1.4
-                0x000000000000513c       0x86 build/src/SW_UDISK.o
- *fill*         0x00000000000051c2        0x2 
+                0x0000000000004dd0       0x12 build/src/CH56x_usb20.o
+                0x0000000000004dd0                hs_device_descriptor
+ *fill*         0x0000000000004de2        0x2 
  .rodata.UDISK_SCSI_CMD_Deal
-                0x00000000000051c4       0x78 build/src/SW_UDISK.o
- .rodata.msc_read_selftest.str1.4
-                0x000000000000523c       0x34 build/src/SW_UDISK.o
+                0x0000000000004de4       0x78 build/src/SW_UDISK.o
  .rodata.UDISK_Mode_Senese_5A
-                0x0000000000005270       0x10 build/src/SW_UDISK.o
-                0x0000000000005270                UDISK_Mode_Senese_5A
+                0x0000000000004e5c       0x10 build/src/SW_UDISK.o
+                0x0000000000004e5c                UDISK_Mode_Senese_5A
  .rodata.UDISK_Mode_Sense_1A
-                0x0000000000005280        0xc build/src/SW_UDISK.o
-                0x0000000000005280                UDISK_Mode_Sense_1A
+                0x0000000000004e6c        0xc build/src/SW_UDISK.o
+                0x0000000000004e6c                UDISK_Mode_Sense_1A
  .rodata.UDISK_Rd_Format_Capacity
-                0x000000000000528c        0xc build/src/SW_UDISK.o
-                0x000000000000528c                UDISK_Rd_Format_Capacity
+                0x0000000000004e78        0xc build/src/SW_UDISK.o
+                0x0000000000004e78                UDISK_Rd_Format_Capacity
  .rodata.SDReadOCR.str1.4
-                0x0000000000005298       0x3f build/src/SD.o
- *fill*         0x00000000000052d7        0x1 
- .rodata.sd_read_one.constprop.0.str1.4
-                0x00000000000052d8       0x3f build/src/sd_storage.o
- *fill*         0x0000000000005317        0x1 
+                0x0000000000004e84       0x15 build/src/SD.o
+ *fill*         0x0000000000004e99        0x3 
  .rodata.sd_storage_mount.str1.4
-                0x0000000000005318       0x9c build/src/sd_storage.o
+                0x0000000000004e9c       0xd4 build/src/sd_storage.o
  .rodata.UART2_IRQHandler.str1.4
-                0x00000000000053b4       0x15 build/src/cdc_uart.o
- *fill*         0x00000000000053c9        0x3 
+                0x0000000000004f70       0x15 build/src/cdc_uart.o
+ *fill*         0x0000000000004f85        0x3 
  .rodata.ownership_release.str1.4
-                0x00000000000053cc       0x22 build/src/ownership.o
- *fill*         0x00000000000053ee        0x2 
+                0x0000000000004f88       0x22 build/src/ownership.o
+ *fill*         0x0000000000004faa        0x2 
  .rodata.ownership_claim.str1.4
-                0x00000000000053f0       0xb4 build/src/ownership.o
+                0x0000000000004fac       0x93 build/src/ownership.o
+ *fill*         0x000000000000503f        0x1 
  .rodata.GPIOA_ModeCfg
-                0x00000000000054a4       0x2c build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000005040       0x2c build/sdk/Peripheral/src/CH56x_gpio.o
  .rodata.GPIOB_ModeCfg
-                0x00000000000054d0       0x2c build/sdk/Peripheral/src/CH56x_gpio.o
+                0x000000000000506c       0x2c build/sdk/Peripheral/src/CH56x_gpio.o
  .rodata.__sf_fake_stderr
-                0x00000000000054fc       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x00000000000054fc                __sf_fake_stderr
+                0x0000000000005098       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x0000000000005098                __sf_fake_stderr
  .rodata.__sf_fake_stdout
-                0x000000000000551c       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x000000000000551c                __sf_fake_stdout
+                0x00000000000050b8       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x00000000000050b8                __sf_fake_stdout
  .rodata.__sf_fake_stdin
-                0x000000000000553c       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
-                0x000000000000553c                __sf_fake_stdin
+                0x00000000000050d8       0x20 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x00000000000050d8                __sf_fake_stdin
  .rodata._vfprintf_r.str1.4
-                0x000000000000555c       0x13 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
- *fill*         0x000000000000556f        0x1 
+                0x00000000000050f8       0x13 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+ *fill*         0x000000000000510b        0x1 
  .rodata._printf_i.str1.4
-                0x0000000000005570       0x25 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
- *fill*         0x0000000000005595        0x3 
+                0x000000000000510c       0x25 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+ *fill*         0x0000000000005131        0x3 
  .rodata._printf_i
-                0x0000000000005598       0x58 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000000005134       0x58 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
  *(.glue_7)
  *(.glue_7t)
  *(.gnu.linkonce.t.*)
-                0x00000000000055f0                . = ALIGN (0x4)
+                0x000000000000518c                . = ALIGN (0x4)
 
-.rela.dyn       0x00000000000055f0        0x0
- .rela.init     0x00000000000055f0        0x0 build/src/Main.o
- .rela.vector   0x00000000000055f0        0x0 build/src/Main.o
+.rela.dyn       0x000000000000518c        0x0
+ .rela.init     0x000000000000518c        0x0 build/src/Main.o
+ .rela.vector   0x000000000000518c        0x0 build/src/Main.o
  .rela.text.handle_reset
-                0x00000000000055f0        0x0 build/src/Main.o
+                0x000000000000518c        0x0 build/src/Main.o
  .rela.text._vfprintf_r
-                0x00000000000055f0        0x0 build/src/Main.o
+                0x000000000000518c        0x0 build/src/Main.o
  .rela.text._sbrk
-                0x00000000000055f0        0x0 build/src/Main.o
+                0x000000000000518c        0x0 build/src/Main.o
 
-.fini           0x00000000000055f0        0x0
+.fini           0x000000000000518c        0x0
  *(SORT_NONE(.fini))
-                0x00000000000055f0                . = ALIGN (0x4)
+                0x000000000000518c                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x00000000000055f0        0x0
+.preinit_array  0x000000000000518c        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x00000000000055f0        0x0
+.init_array     0x000000000000518c        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x00000000000055f0        0x0
+.fini_array     0x000000000000518c        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -1204,15 +1201,15 @@ END GROUP
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x0000000020000000        0x0 load address 0x00000000000055f0
+.dalign         0x0000000020000000        0x0 load address 0x000000000000518c
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                PROVIDE (_data_vma = .)
 
-.dlalign        0x00000000000055f0        0x0
-                0x00000000000055f0                . = ALIGN (0x4)
-                0x00000000000055f0                PROVIDE (_data_lma = .)
+.dlalign        0x000000000000518c        0x0
+                0x000000000000518c                . = ALIGN (0x4)
+                0x000000000000518c                PROVIDE (_data_lma = .)
 
-.data           0x0000000020000000      0x10c load address 0x00000000000055f0
+.data           0x0000000020000000      0x10c load address 0x000000000000518c
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
  .data.StringSerial
@@ -1274,7 +1271,7 @@ END GROUP
                 0x000000002000010c                . = ALIGN (0x4)
                 0x000000002000010c                PROVIDE (_edata = .)
 
-.bss            0x000000002000010c       0xd0 load address 0x00000000000056fc
+.bss            0x000000002000010c     0x10d4 load address 0x0000000000005298
                 0x000000002000010c                . = ALIGN (0x4)
                 0x000000002000010c                PROVIDE (_sbss = .)
  *(.sbss*)
@@ -1313,131 +1310,137 @@ END GROUP
  .sbss.pEndp2_Buf
                 0x0000000020000130        0x4 build/src/SW_UDISK.o
                 0x0000000020000130                pEndp2_Buf
- .sbss.UDISK_Out_Pack_Len
-                0x0000000020000134        0x2 build/src/SW_UDISK.o
-                0x0000000020000134                UDISK_Out_Pack_Len
  .sbss.UDISK_InPackflag
-                0x0000000020000136        0x1 build/src/SW_UDISK.o
-                0x0000000020000136                UDISK_InPackflag
+                0x0000000020000134        0x1 build/src/SW_UDISK.o
+                0x0000000020000134                UDISK_InPackflag
  .sbss.UDISK_OutPackflag
-                0x0000000020000137        0x1 build/src/SW_UDISK.o
-                0x0000000020000137                UDISK_OutPackflag
+                0x0000000020000135        0x1 build/src/SW_UDISK.o
+                0x0000000020000135                UDISK_OutPackflag
  .sbss.UDISK_Sec_Pack_Count
-                0x0000000020000138        0x2 build/src/SW_UDISK.o
-                0x0000000020000138                UDISK_Sec_Pack_Count
- *fill*         0x000000002000013a        0x2 
+                0x0000000020000136        0x2 build/src/SW_UDISK.o
+                0x0000000020000136                UDISK_Sec_Pack_Count
  .sbss.UDISK_Cur_Sec_Lba
-                0x000000002000013c        0x4 build/src/SW_UDISK.o
-                0x000000002000013c                UDISK_Cur_Sec_Lba
+                0x0000000020000138        0x4 build/src/SW_UDISK.o
+                0x0000000020000138                UDISK_Cur_Sec_Lba
  .sbss.UDISK_Transfer_DataLen
-                0x0000000020000140        0x4 build/src/SW_UDISK.o
-                0x0000000020000140                UDISK_Transfer_DataLen
+                0x000000002000013c        0x4 build/src/SW_UDISK.o
+                0x000000002000013c                UDISK_Transfer_DataLen
  .sbss.Udisk_CSW_Status
-                0x0000000020000144        0x1 build/src/SW_UDISK.o
-                0x0000000020000144                Udisk_CSW_Status
+                0x0000000020000140        0x1 build/src/SW_UDISK.o
+                0x0000000020000140                Udisk_CSW_Status
  .sbss.Udisk_Sense_ASC
-                0x0000000020000145        0x1 build/src/SW_UDISK.o
-                0x0000000020000145                Udisk_Sense_ASC
+                0x0000000020000141        0x1 build/src/SW_UDISK.o
+                0x0000000020000141                Udisk_Sense_ASC
  .sbss.Udisk_Sense_Key
-                0x0000000020000146        0x1 build/src/SW_UDISK.o
-                0x0000000020000146                Udisk_Sense_Key
- *fill*         0x0000000020000147        0x1 
+                0x0000000020000142        0x1 build/src/SW_UDISK.o
+                0x0000000020000142                Udisk_Sense_Key
+ *fill*         0x0000000020000143        0x1 
  .sbss.Udisk_CBW_Tag_Save
-                0x0000000020000148        0x4 build/src/SW_UDISK.o
-                0x0000000020000148                Udisk_CBW_Tag_Save
+                0x0000000020000144        0x4 build/src/SW_UDISK.o
+                0x0000000020000144                Udisk_CBW_Tag_Save
  .sbss.Udisk_Capability
-                0x000000002000014c        0x4 build/src/SW_UDISK.o
-                0x000000002000014c                Udisk_Capability
+                0x0000000020000148        0x4 build/src/SW_UDISK.o
+                0x0000000020000148                Udisk_Capability
  .sbss.Udisk_Transfer_Status
-                0x0000000020000150        0x1 build/src/SW_UDISK.o
-                0x0000000020000150                Udisk_Transfer_Status
+                0x000000002000014c        0x1 build/src/SW_UDISK.o
+                0x000000002000014c                Udisk_Transfer_Status
  .sbss.Udisk_Status
-                0x0000000020000151        0x1 build/src/SW_UDISK.o
-                0x0000000020000151                Udisk_Status
+                0x000000002000014d        0x1 build/src/SW_UDISK.o
+                0x000000002000014d                Udisk_Status
  .sbss.Udisk_Attention
-                0x0000000020000152        0x1 build/src/SW_UDISK.o
-                0x0000000020000152                Udisk_Attention
- *fill*         0x0000000020000153        0x1 
+                0x000000002000014e        0x1 build/src/SW_UDISK.o
+                0x000000002000014e                Udisk_Attention
+ *fill*         0x000000002000014f        0x1 
+ .sbss.UDISK_Out_Pack_Len
+                0x0000000020000150        0x2 build/src/SW_UDISK.o
+                0x0000000020000150                UDISK_Out_Pack_Len
  .sbss.Uart_Sendlenth
-                0x0000000020000154        0x2 build/src/cdc_uart.o
-                0x0000000020000154                Uart_Sendlenth
+                0x0000000020000152        0x2 build/src/cdc_uart.o
+                0x0000000020000152                Uart_Sendlenth
  .sbss.Uart_Timecount
-                0x0000000020000156        0x2 build/src/cdc_uart.o
-                0x0000000020000156                Uart_Timecount
+                0x0000000020000154        0x2 build/src/cdc_uart.o
+                0x0000000020000154                Uart_Timecount
  .sbss.DownloadPoint4_Busy
-                0x0000000020000158        0x1 build/src/cdc_uart.o
-                0x0000000020000158                DownloadPoint4_Busy
+                0x0000000020000156        0x1 build/src/cdc_uart.o
+                0x0000000020000156                DownloadPoint4_Busy
  .sbss.UploadPoint4_Busy
-                0x0000000020000159        0x1 build/src/cdc_uart.o
-                0x0000000020000159                UploadPoint4_Busy
+                0x0000000020000157        0x1 build/src/cdc_uart.o
+                0x0000000020000157                UploadPoint4_Busy
  .sbss.USBBufOutPoint
-                0x000000002000015a        0x2 build/src/cdc_uart.o
-                0x000000002000015a                USBBufOutPoint
+                0x0000000020000158        0x2 build/src/cdc_uart.o
+                0x0000000020000158                USBBufOutPoint
  .sbss.USBByteCount
-                0x000000002000015c        0x2 build/src/cdc_uart.o
-                0x000000002000015c                USBByteCount
+                0x000000002000015a        0x2 build/src/cdc_uart.o
+                0x000000002000015a                USBByteCount
  .sbss.UartByteCount
-                0x000000002000015e        0x2 build/src/cdc_uart.o
-                0x000000002000015e                UartByteCount
+                0x000000002000015c        0x2 build/src/cdc_uart.o
+                0x000000002000015c                UartByteCount
  .sbss.Uart_Output_Point
-                0x0000000020000160        0x2 build/src/cdc_uart.o
-                0x0000000020000160                Uart_Output_Point
+                0x000000002000015e        0x2 build/src/cdc_uart.o
+                0x000000002000015e                Uart_Output_Point
  .sbss.Uart_Input_Point
-                0x0000000020000162        0x2 build/src/cdc_uart.o
-                0x0000000020000162                Uart_Input_Point
+                0x0000000020000160        0x2 build/src/cdc_uart.o
+                0x0000000020000160                Uart_Input_Point
+ .sbss.dbg_tail
+                0x0000000020000162        0x2 build/src/debug_cdc.o
+ .sbss.dbg_head
+                0x0000000020000164        0x2 build/src/debug_cdc.o
+ .sbss.DebugUpload_Busy
+                0x0000000020000166        0x1 build/src/debug_cdc.o
+                0x0000000020000166                DebugUpload_Busy
  .sbss.own_pending
-                0x0000000020000164        0x1 build/src/ownership.o
+                0x0000000020000167        0x1 build/src/ownership.o
  .sbss.own_card_ready
-                0x0000000020000165        0x1 build/src/ownership.o
-                0x0000000020000165                own_card_ready
+                0x0000000020000168        0x1 build/src/ownership.o
+                0x0000000020000168                own_card_ready
  .sbss.own_ch569_owns
-                0x0000000020000166        0x1 build/src/ownership.o
-                0x0000000020000166                own_ch569_owns
- *fill*         0x0000000020000167        0x1 
- .sbss.p_ms     0x0000000020000168        0x2 build/sdk/Peripheral/src/CH56x_sys.o
- .sbss.p_us     0x000000002000016a        0x1 build/sdk/Peripheral/src/CH56x_sys.o
- .sbss          0x000000002000016b        0x4 sdk/USB30Lib/libCH56x_USB30_device_lib.a(usb30_int.o)
-                0x000000002000016d                ISO_MODE_STATUS
-                0x000000002000016e                ISO_endp
- *fill*         0x000000002000016f        0x1 
- .sbss.__lock___malloc_recursive_mutex
-                0x0000000020000170        0x1 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x0000000020000170                __lock___malloc_recursive_mutex
+                0x0000000020000169        0x1 build/src/ownership.o
+                0x0000000020000169                own_ch569_owns
+ .sbss.p_ms     0x000000002000016a        0x2 build/sdk/Peripheral/src/CH56x_sys.o
+ .sbss.p_us     0x000000002000016c        0x1 build/sdk/Peripheral/src/CH56x_sys.o
+ .sbss          0x000000002000016d        0x4 sdk/USB30Lib/libCH56x_USB30_device_lib.a(usb30_int.o)
+                0x000000002000016f                ISO_MODE_STATUS
+                0x0000000020000170                ISO_endp
  *fill*         0x0000000020000171        0x3 
- .sbss.__lock___sfp_recursive_mutex
+ .sbss.__lock___malloc_recursive_mutex
                 0x0000000020000174        0x1 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x0000000020000174                __lock___sfp_recursive_mutex
+                0x0000000020000174                __lock___malloc_recursive_mutex
  *fill*         0x0000000020000175        0x3 
- .sbss.__lock___sinit_recursive_mutex
+ .sbss.__lock___sfp_recursive_mutex
                 0x0000000020000178        0x1 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
-                0x0000000020000178                __lock___sinit_recursive_mutex
+                0x0000000020000178                __lock___sfp_recursive_mutex
  *fill*         0x0000000020000179        0x3 
+ .sbss.__lock___sinit_recursive_mutex
+                0x000000002000017c        0x1 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+                0x000000002000017c                __lock___sinit_recursive_mutex
+ *fill*         0x000000002000017d        0x3 
  .sbss.__malloc_sbrk_start
-                0x000000002000017c        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000002000017c                __malloc_sbrk_start
- .sbss.__malloc_free_list
                 0x0000000020000180        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000020000180                __malloc_free_list
- .sbss.errno    0x0000000020000184        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
-                0x0000000020000184                errno
+                0x0000000020000180                __malloc_sbrk_start
+ .sbss.__malloc_free_list
+                0x0000000020000184        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000020000184                __malloc_free_list
+ .sbss.errno    0x0000000020000188        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
+                0x0000000020000188                errno
  .sbss.heap_end.0
-                0x0000000020000188        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
+                0x000000002000018c        0x4 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
  *(.gnu.linkonce.sb.*)
  *(.bss*)
- .bss.mBOC      0x000000002000018c       0x1f build/src/SW_UDISK.o
-                0x000000002000018c                mBOC
- *fill*         0x00000000200001ab        0x1 
+ .bss.mBOC      0x0000000020000190       0x1f build/src/SW_UDISK.o
+                0x0000000020000190                mBOC
+ *fill*         0x00000000200001af        0x1 
  .bss.TF_EMMCParam
-                0x00000000200001ac       0x30 build/src/SW_UDISK.o
-                0x00000000200001ac                TF_EMMCParam
+                0x00000000200001b0       0x30 build/src/SW_UDISK.o
+                0x00000000200001b0                TF_EMMCParam
+ .bss.dbg_ring  0x00000000200001e0     0x1000 build/src/debug_cdc.o
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x00000000200001dc                . = ALIGN (0x4)
-                0x00000000200001dc                PROVIDE (_ebss = .)
+                0x00000000200011e0                . = ALIGN (0x4)
+                0x00000000200011e0                PROVIDE (_ebss = .)
                 [!provide]                        PROVIDE (_end = _ebss)
-                0x00000000200001dc                PROVIDE (end = .)
+                0x00000000200011e0                PROVIDE (end = .)
 
-.DMADATA        0x0000000020020000    0x15240
+.DMADATA        0x0000000020020000    0x15840
                 0x0000000020020000                . = ALIGN (0x10)
                 0x0000000020020000                PROVIDE (_dmadata_start = .)
  *(.DMADATA*)
@@ -1445,15 +1448,17 @@ END GROUP
                 0x0000000020020040                UDisk_Out_Buf
                 0x000000002002a040                UDisk_In_Buf
                 0x0000000020034040                endp0RTbuff
- .DMADATA       0x0000000020034240      0x200 build/src/SW_UDISK.o
- .DMADATA       0x0000000020034440      0x200 build/src/sd_storage.o
- .DMADATA       0x0000000020034640      0xc00 build/src/cdc_uart.o
-                0x0000000020034a40                endp4Rxbuff
-                0x0000000020034e40                endp4Txbuff
+ .DMADATA       0x0000000020034240      0x200 build/src/sd_storage.o
+ .DMADATA       0x0000000020034440      0xc00 build/src/cdc_uart.o
+                0x0000000020034840                endp4Rxbuff
+                0x0000000020034c40                endp4Txbuff
+ .DMADATA       0x0000000020035040      0x800 build/src/debug_cdc.o
+                0x0000000020035040                endp6Rxbuff
+                0x0000000020035440                endp6Txbuff
  *(.dmadata*)
  *(.dmadata.*)
-                0x0000000020035240                . = ALIGN (0x10)
-                0x0000000020035240                PROVIDE (_dmadata_end = .)
+                0x0000000020035840                . = ALIGN (0x10)
+                0x0000000020035840                PROVIDE (_dmadata_end = .)
 
 .stack          0x0000000020003800      0x800
                 0x0000000020003800                . = ALIGN (0x4)
@@ -1463,70 +1468,74 @@ END GROUP
                 0x0000000020004000                PROVIDE (_eusrstack = .)
 OUTPUT(build/ch569_sd_uart_bridge.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000     0x8685
- .debug_info    0x0000000000000000      0x84f build/src/Main.o
- .debug_info    0x000000000000084f     0x1907 build/src/CH56x_usb30.o
- .debug_info    0x0000000000002156      0xb16 build/src/CH56x_usb20.o
- .debug_info    0x0000000000002c6c     0x18e1 build/src/SW_UDISK.o
- .debug_info    0x000000000000454d      0x758 build/src/SD.o
- .debug_info    0x0000000000004ca5      0x972 build/src/sd_storage.o
- .debug_info    0x0000000000005617      0xcd9 build/src/cdc_uart.o
- .debug_info    0x00000000000062f0      0x48d build/src/ownership.o
- .debug_info    0x000000000000677d      0x161 build/sdk/Peripheral/src/CH56x_clk.o
- .debug_info    0x00000000000068de      0xdb1 build/sdk/Peripheral/src/CH56x_emmc.o
- .debug_info    0x000000000000768f      0x277 build/sdk/Peripheral/src/CH56x_gpio.o
- .debug_info    0x0000000000007906      0x35e build/sdk/Peripheral/src/CH56x_sys.o
- .debug_info    0x0000000000007c64      0x3cf build/sdk/Peripheral/src/CH56x_timer.o
- .debug_info    0x0000000000008033      0x652 build/sdk/Peripheral/src/CH56x_uart.o
+.debug_info     0x0000000000000000     0x858b
+ .debug_info    0x0000000000000000      0x8b0 build/src/Main.o
+ .debug_info    0x00000000000008b0     0x1b66 build/src/CH56x_usb30.o
+ .debug_info    0x0000000000002416      0xb6e build/src/CH56x_usb20.o
+ .debug_info    0x0000000000002f84     0x1177 build/src/SW_UDISK.o
+ .debug_info    0x00000000000040fb      0x698 build/src/SD.o
+ .debug_info    0x0000000000004793      0x8de build/src/sd_storage.o
+ .debug_info    0x0000000000005071      0xcd9 build/src/cdc_uart.o
+ .debug_info    0x0000000000005d4a      0x2bb build/src/debug_cdc.o
+ .debug_info    0x0000000000006005      0x43d build/src/ownership.o
+ .debug_info    0x0000000000006442      0x16d build/sdk/Peripheral/src/CH56x_clk.o
+ .debug_info    0x00000000000065af      0xeda build/sdk/Peripheral/src/CH56x_emmc.o
+ .debug_info    0x0000000000007489      0x28d build/sdk/Peripheral/src/CH56x_gpio.o
+ .debug_info    0x0000000000007716      0x380 build/sdk/Peripheral/src/CH56x_sys.o
+ .debug_info    0x0000000000007a96      0x3f3 build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_info    0x0000000000007e89      0x702 build/sdk/Peripheral/src/CH56x_uart.o
 
-.debug_abbrev   0x0000000000000000     0x2284
- .debug_abbrev  0x0000000000000000      0x299 build/src/Main.o
- .debug_abbrev  0x0000000000000299      0x471 build/src/CH56x_usb30.o
- .debug_abbrev  0x000000000000070a      0x3bb build/src/CH56x_usb20.o
- .debug_abbrev  0x0000000000000ac5      0x486 build/src/SW_UDISK.o
- .debug_abbrev  0x0000000000000f4b      0x1ec build/src/SD.o
- .debug_abbrev  0x0000000000001137      0x2c3 build/src/sd_storage.o
- .debug_abbrev  0x00000000000013fa      0x340 build/src/cdc_uart.o
- .debug_abbrev  0x000000000000173a      0x1e9 build/src/ownership.o
- .debug_abbrev  0x0000000000001923       0xce build/sdk/Peripheral/src/CH56x_clk.o
- .debug_abbrev  0x00000000000019f1      0x306 build/sdk/Peripheral/src/CH56x_emmc.o
- .debug_abbrev  0x0000000000001cf7      0x128 build/sdk/Peripheral/src/CH56x_gpio.o
- .debug_abbrev  0x0000000000001e1f      0x18f build/sdk/Peripheral/src/CH56x_sys.o
- .debug_abbrev  0x0000000000001fae      0x117 build/sdk/Peripheral/src/CH56x_timer.o
- .debug_abbrev  0x00000000000020c5      0x1bf build/sdk/Peripheral/src/CH56x_uart.o
+.debug_abbrev   0x0000000000000000     0x234f
+ .debug_abbrev  0x0000000000000000      0x2aa build/src/Main.o
+ .debug_abbrev  0x00000000000002aa      0x465 build/src/CH56x_usb30.o
+ .debug_abbrev  0x000000000000070f      0x3d1 build/src/CH56x_usb20.o
+ .debug_abbrev  0x0000000000000ae0      0x390 build/src/SW_UDISK.o
+ .debug_abbrev  0x0000000000000e70      0x20f build/src/SD.o
+ .debug_abbrev  0x000000000000107f      0x273 build/src/sd_storage.o
+ .debug_abbrev  0x00000000000012f2      0x340 build/src/cdc_uart.o
+ .debug_abbrev  0x0000000000001632      0x1aa build/src/debug_cdc.o
+ .debug_abbrev  0x00000000000017dc      0x1fb build/src/ownership.o
+ .debug_abbrev  0x00000000000019d7       0xc4 build/sdk/Peripheral/src/CH56x_clk.o
+ .debug_abbrev  0x0000000000001a9b      0x2fd build/sdk/Peripheral/src/CH56x_emmc.o
+ .debug_abbrev  0x0000000000001d98      0x131 build/sdk/Peripheral/src/CH56x_gpio.o
+ .debug_abbrev  0x0000000000001ec9      0x198 build/sdk/Peripheral/src/CH56x_sys.o
+ .debug_abbrev  0x0000000000002061      0x11a build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_abbrev  0x000000000000217b      0x1d4 build/sdk/Peripheral/src/CH56x_uart.o
 
 .debug_loclists
-                0x0000000000000000     0x323d
+                0x0000000000000000     0x27fb
  .debug_loclists
-                0x0000000000000000      0x12f build/src/Main.o
+                0x0000000000000000      0x125 build/src/Main.o
  .debug_loclists
-                0x000000000000012f      0x206 build/src/CH56x_usb30.o
+                0x0000000000000125      0x206 build/src/CH56x_usb30.o
  .debug_loclists
-                0x0000000000000335      0x20c build/src/CH56x_usb20.o
+                0x000000000000032b      0x20f build/src/CH56x_usb20.o
  .debug_loclists
-                0x0000000000000541      0xb5f build/src/SW_UDISK.o
+                0x000000000000053a      0x387 build/src/SW_UDISK.o
  .debug_loclists
-                0x00000000000010a0      0x92b build/src/SD.o
+                0x00000000000008c1      0x6d7 build/src/SD.o
  .debug_loclists
-                0x00000000000019cb      0x229 build/src/sd_storage.o
+                0x0000000000000f98      0x1b3 build/src/sd_storage.o
  .debug_loclists
-                0x0000000000001bf4      0x14e build/src/cdc_uart.o
+                0x000000000000114b      0x14e build/src/cdc_uart.o
  .debug_loclists
-                0x0000000000001d42       0x83 build/src/ownership.o
+                0x0000000000001299       0x5b build/src/debug_cdc.o
  .debug_loclists
-                0x0000000000001dc5       0x5a build/sdk/Peripheral/src/CH56x_clk.o
+                0x00000000000012f4       0x81 build/src/ownership.o
  .debug_loclists
-                0x0000000000001e1f      0xaa7 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000001375       0x6d build/sdk/Peripheral/src/CH56x_clk.o
  .debug_loclists
-                0x00000000000028c6      0x1bf build/sdk/Peripheral/src/CH56x_gpio.o
+                0x00000000000013e2      0xa86 build/sdk/Peripheral/src/CH56x_emmc.o
  .debug_loclists
-                0x0000000000002a85      0x16a build/sdk/Peripheral/src/CH56x_sys.o
+                0x0000000000001e68      0x191 build/sdk/Peripheral/src/CH56x_gpio.o
  .debug_loclists
-                0x0000000000002bef       0xf6 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000001ff9      0x121 build/sdk/Peripheral/src/CH56x_sys.o
  .debug_loclists
-                0x0000000000002ce5      0x558 build/sdk/Peripheral/src/CH56x_uart.o
+                0x000000000000211a      0x111 build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_loclists
+                0x000000000000222b      0x5d0 build/sdk/Peripheral/src/CH56x_uart.o
 
-.debug_aranges  0x0000000000000000      0x608
+.debug_aranges  0x0000000000000000      0x630
  .debug_aranges
                 0x0000000000000000       0x30 build/src/Main.o
  .debug_aranges
@@ -1534,311 +1543,349 @@ OUTPUT(build/ch569_sd_uart_bridge.elf elf32-littleriscv)
  .debug_aranges
                 0x0000000000000118       0x50 build/src/CH56x_usb20.o
  .debug_aranges
-                0x0000000000000168       0x88 build/src/SW_UDISK.o
+                0x0000000000000168       0x78 build/src/SW_UDISK.o
  .debug_aranges
-                0x00000000000001f0       0x50 build/src/SD.o
+                0x00000000000001e0       0x60 build/src/SD.o
  .debug_aranges
-                0x0000000000000240       0x30 build/src/sd_storage.o
+                0x0000000000000240       0x28 build/src/sd_storage.o
  .debug_aranges
-                0x0000000000000270       0x48 build/src/cdc_uart.o
+                0x0000000000000268       0x48 build/src/cdc_uart.o
  .debug_aranges
-                0x00000000000002b8       0x40 build/src/ownership.o
+                0x00000000000002b0       0x30 build/src/debug_cdc.o
  .debug_aranges
-                0x00000000000002f8       0x28 build/sdk/Peripheral/src/CH56x_clk.o
+                0x00000000000002e0       0x40 build/src/ownership.o
  .debug_aranges
-                0x0000000000000320       0xb8 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000320       0x28 build/sdk/Peripheral/src/CH56x_clk.o
  .debug_aranges
-                0x00000000000003d8       0x48 build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000000348       0xb8 build/sdk/Peripheral/src/CH56x_emmc.o
  .debug_aranges
-                0x0000000000000420       0x68 build/sdk/Peripheral/src/CH56x_sys.o
+                0x0000000000000400       0x48 build/sdk/Peripheral/src/CH56x_gpio.o
  .debug_aranges
-                0x0000000000000488       0x88 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000448       0x68 build/sdk/Peripheral/src/CH56x_sys.o
  .debug_aranges
-                0x0000000000000510       0xf8 build/sdk/Peripheral/src/CH56x_uart.o
+                0x00000000000004b0       0x88 build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_aranges
+                0x0000000000000538       0xf8 build/sdk/Peripheral/src/CH56x_uart.o
 
 .debug_rnglists
-                0x0000000000000000      0xa6e
+                0x0000000000000000      0x786
  .debug_rnglists
-                0x0000000000000000       0xab build/src/Main.o
+                0x0000000000000000       0x6e build/src/Main.o
  .debug_rnglists
-                0x00000000000000ab      0x126 build/src/CH56x_usb30.o
+                0x000000000000006e      0x126 build/src/CH56x_usb30.o
  .debug_rnglists
-                0x00000000000001d1       0x72 build/src/CH56x_usb20.o
+                0x0000000000000194       0x5e build/src/CH56x_usb20.o
  .debug_rnglists
-                0x0000000000000243      0x1f5 build/src/SW_UDISK.o
+                0x00000000000001f2      0x159 build/src/SW_UDISK.o
  .debug_rnglists
-                0x0000000000000438      0x1d5 build/src/SD.o
+                0x000000000000034b       0x96 build/src/SD.o
  .debug_rnglists
-                0x000000000000060d       0xaa build/src/sd_storage.o
+                0x00000000000003e1       0xa1 build/src/sd_storage.o
  .debug_rnglists
-                0x00000000000006b7       0x5f build/src/cdc_uart.o
+                0x0000000000000482       0x5f build/src/cdc_uart.o
  .debug_rnglists
-                0x0000000000000716       0x3a build/src/ownership.o
+                0x00000000000004e1       0x3e build/src/debug_cdc.o
  .debug_rnglists
-                0x0000000000000750       0x1f build/sdk/Peripheral/src/CH56x_clk.o
+                0x000000000000051f       0x2c build/src/ownership.o
  .debug_rnglists
-                0x000000000000076f       0xc1 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x000000000000054b       0x1a build/sdk/Peripheral/src/CH56x_clk.o
  .debug_rnglists
-                0x0000000000000830       0x43 build/sdk/Peripheral/src/CH56x_gpio.o
+                0x0000000000000565       0x8d build/sdk/Peripheral/src/CH56x_emmc.o
  .debug_rnglists
-                0x0000000000000873       0x67 build/sdk/Peripheral/src/CH56x_sys.o
+                0x00000000000005f2       0x35 build/sdk/Peripheral/src/CH56x_gpio.o
  .debug_rnglists
-                0x00000000000008da       0x8b build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000627       0x49 build/sdk/Peripheral/src/CH56x_sys.o
  .debug_rnglists
-                0x0000000000000965      0x109 build/sdk/Peripheral/src/CH56x_uart.o
+                0x0000000000000670       0x61 build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_rnglists
+                0x00000000000006d1       0xb5 build/sdk/Peripheral/src/CH56x_uart.o
 
-.debug_line     0x0000000000000000     0xc216
- .debug_line    0x0000000000000000      0x3a8 build/src/Main.o
- .debug_line    0x00000000000003a8     0x18e1 build/src/CH56x_usb30.o
- .debug_line    0x0000000000001c89     0x102b build/src/CH56x_usb20.o
- .debug_line    0x0000000000002cb4     0x2cb6 build/src/SW_UDISK.o
- .debug_line    0x000000000000596a      0xe6e build/src/SD.o
- .debug_line    0x00000000000067d8      0x9fb build/src/sd_storage.o
- .debug_line    0x00000000000071d3      0x81a build/src/cdc_uart.o
- .debug_line    0x00000000000079ed      0x4c0 build/src/ownership.o
- .debug_line    0x0000000000007ead      0x2f9 build/sdk/Peripheral/src/CH56x_clk.o
- .debug_line    0x00000000000081a6     0x1b94 build/sdk/Peripheral/src/CH56x_emmc.o
- .debug_line    0x0000000000009d3a      0xde9 build/sdk/Peripheral/src/CH56x_gpio.o
- .debug_line    0x000000000000ab23      0x566 build/sdk/Peripheral/src/CH56x_sys.o
- .debug_line    0x000000000000b089      0x5b8 build/sdk/Peripheral/src/CH56x_timer.o
- .debug_line    0x000000000000b641      0xbd5 build/sdk/Peripheral/src/CH56x_uart.o
+.debug_line     0x0000000000000000     0xa3a6
+ .debug_line    0x0000000000000000      0x407 build/src/Main.o
+ .debug_line    0x0000000000000407     0x1a69 build/src/CH56x_usb30.o
+ .debug_line    0x0000000000001e70      0xe19 build/src/CH56x_usb20.o
+ .debug_line    0x0000000000002c89     0x1964 build/src/SW_UDISK.o
+ .debug_line    0x00000000000045ed      0xcc8 build/src/SD.o
+ .debug_line    0x00000000000052b5      0x73f build/src/sd_storage.o
+ .debug_line    0x00000000000059f4      0x81a build/src/cdc_uart.o
+ .debug_line    0x000000000000620e      0x2e5 build/src/debug_cdc.o
+ .debug_line    0x00000000000064f3      0x420 build/src/ownership.o
+ .debug_line    0x0000000000006913      0x28e build/sdk/Peripheral/src/CH56x_clk.o
+ .debug_line    0x0000000000006ba1     0x17a2 build/sdk/Peripheral/src/CH56x_emmc.o
+ .debug_line    0x0000000000008343      0xc25 build/sdk/Peripheral/src/CH56x_gpio.o
+ .debug_line    0x0000000000008f68      0x4a2 build/sdk/Peripheral/src/CH56x_sys.o
+ .debug_line    0x000000000000940a      0x4ad build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_line    0x00000000000098b7      0xaef build/sdk/Peripheral/src/CH56x_uart.o
 
-.debug_str      0x0000000000000000     0x1c9c
- .debug_str     0x0000000000000000      0x52a build/src/Main.o
-                                        0x592 (size before relaxing)
- .debug_str     0x000000000000052a      0x85b build/src/CH56x_usb30.o
-                                        0xc50 (size before relaxing)
- .debug_str     0x0000000000000d85      0x1da build/src/CH56x_usb20.o
-                                        0x6d5 (size before relaxing)
- .debug_str     0x0000000000000f5f      0x3d0 build/src/SW_UDISK.o
-                                        0xc13 (size before relaxing)
- .debug_str     0x000000000000132f       0xbd build/src/SD.o
+.debug_str      0x0000000000000000     0x1d2e
+ .debug_str     0x0000000000000000      0x550 build/src/Main.o
+                                        0x5b8 (size before relaxing)
+ .debug_str     0x0000000000000550      0x90f build/src/CH56x_usb30.o
+                                        0xc7d (size before relaxing)
+ .debug_str     0x0000000000000e5f      0x1da build/src/CH56x_usb20.o
+                                        0x6e5 (size before relaxing)
+ .debug_str     0x0000000000001039      0x36a build/src/SW_UDISK.o
+                                        0x98a (size before relaxing)
+ .debug_str     0x00000000000013a3       0xc7 build/src/SD.o
                                         0x2e1 (size before relaxing)
- .debug_str     0x00000000000013ec       0x7c build/src/sd_storage.o
-                                        0x4d8 (size before relaxing)
- .debug_str     0x0000000000001468      0x157 build/src/cdc_uart.o
+ .debug_str     0x000000000000146a       0x70 build/src/sd_storage.o
+                                        0x4d7 (size before relaxing)
+ .debug_str     0x00000000000014da      0x157 build/src/cdc_uart.o
                                         0xa0c (size before relaxing)
- .debug_str     0x00000000000015bf       0x36 build/src/ownership.o
-                                        0x411 (size before relaxing)
- .debug_str     0x00000000000015f5       0x96 build/sdk/Peripheral/src/CH56x_clk.o
-                                        0x1f3 (size before relaxing)
- .debug_str     0x000000000000168b      0x166 build/sdk/Peripheral/src/CH56x_emmc.o
-                                        0x3fd (size before relaxing)
- .debug_str     0x00000000000017f1       0xa5 build/sdk/Peripheral/src/CH56x_gpio.o
-                                        0x2fa (size before relaxing)
- .debug_str     0x0000000000001896       0xcd build/sdk/Peripheral/src/CH56x_sys.o
-                                        0x26f (size before relaxing)
- .debug_str     0x0000000000001963      0x1c6 build/sdk/Peripheral/src/CH56x_timer.o
-                                        0x320 (size before relaxing)
- .debug_str     0x0000000000001b29      0x173 build/sdk/Peripheral/src/CH56x_uart.o
-                                        0x354 (size before relaxing)
+ .debug_str     0x0000000000001631       0x32 build/src/debug_cdc.o
+                                        0x212 (size before relaxing)
+ .debug_str     0x0000000000001663       0x36 build/src/ownership.o
+                                        0x40e (size before relaxing)
+ .debug_str     0x0000000000001699       0x96 build/sdk/Peripheral/src/CH56x_clk.o
+                                        0x20a (size before relaxing)
+ .debug_str     0x000000000000172f      0x166 build/sdk/Peripheral/src/CH56x_emmc.o
+                                        0x414 (size before relaxing)
+ .debug_str     0x0000000000001895       0xa5 build/sdk/Peripheral/src/CH56x_gpio.o
+                                        0x311 (size before relaxing)
+ .debug_str     0x000000000000193a       0xbb build/sdk/Peripheral/src/CH56x_sys.o
+                                        0x286 (size before relaxing)
+ .debug_str     0x00000000000019f5      0x1c6 build/sdk/Peripheral/src/CH56x_timer.o
+                                        0x337 (size before relaxing)
+ .debug_str     0x0000000000001bbb      0x173 build/sdk/Peripheral/src/CH56x_uart.o
+                                        0x36b (size before relaxing)
 
 .debug_line_str
-                0x0000000000000000      0x330
+                0x0000000000000000      0x4b3
  .debug_line_str
-                0x0000000000000000      0x14a build/src/Main.o
-                                        0x162 (size before relaxing)
+                0x0000000000000000      0x245 build/src/Main.o
+                                        0x250 (size before relaxing)
  .debug_line_str
-                0x000000000000014a       0x81 build/src/CH56x_usb30.o
-                                        0x1c5 (size before relaxing)
+                0x0000000000000245       0xf9 build/src/CH56x_usb30.o
+                                        0x1d9 (size before relaxing)
  .debug_line_str
-                0x00000000000001cb       0x12 build/src/CH56x_usb20.o
-                                        0x1a2 (size before relaxing)
+                0x000000000000033e       0x12 build/src/CH56x_usb20.o
+                                        0x243 (size before relaxing)
  .debug_line_str
-                0x00000000000001dd       0x1c build/src/SW_UDISK.o
-                                        0x192 (size before relaxing)
+                0x0000000000000350       0x21 build/src/SW_UDISK.o
+                                        0x18f (size before relaxing)
  .debug_line_str
-                0x00000000000001f9        0x9 build/src/SD.o
+                0x0000000000000371        0x9 build/src/SD.o
                                          0xef (size before relaxing)
  .debug_line_str
-                0x0000000000000202       0x16 build/src/sd_storage.o
+                0x000000000000037a       0x11 build/src/sd_storage.o
                                         0x13a (size before relaxing)
  .debug_line_str
-                0x0000000000000218       0x1c build/src/cdc_uart.o
+                0x000000000000038b       0x1c build/src/cdc_uart.o
                                         0x134 (size before relaxing)
  .debug_line_str
-                0x0000000000000234       0x1d build/src/ownership.o
-                                        0x140 (size before relaxing)
+                0x00000000000003a7       0x10 build/src/debug_cdc.o
+                                         0xb1 (size before relaxing)
  .debug_line_str
-                0x0000000000000251       0x32 build/sdk/Peripheral/src/CH56x_clk.o
-                                         0xeb (size before relaxing)
+                0x00000000000003b7       0x1d build/src/ownership.o
+                                        0x21d (size before relaxing)
  .debug_line_str
-                0x0000000000000283       0x2d build/sdk/Peripheral/src/CH56x_emmc.o
-                                        0x108 (size before relaxing)
+                0x00000000000003d4       0x32 build/sdk/Peripheral/src/CH56x_clk.o
+                                        0x182 (size before relaxing)
  .debug_line_str
-                0x00000000000002b0       0x20 build/sdk/Peripheral/src/CH56x_gpio.o
-                                         0x84 (size before relaxing)
+                0x0000000000000406       0x2d build/sdk/Peripheral/src/CH56x_emmc.o
+                                        0x19e (size before relaxing)
  .debug_line_str
-                0x00000000000002d0       0x1f build/sdk/Peripheral/src/CH56x_sys.o
-                                        0x103 (size before relaxing)
+                0x0000000000000433       0x20 build/sdk/Peripheral/src/CH56x_gpio.o
+                                         0x8e (size before relaxing)
  .debug_line_str
-                0x00000000000002ef       0x21 build/sdk/Peripheral/src/CH56x_timer.o
-                                         0xa0 (size before relaxing)
+                0x0000000000000453       0x1f build/sdk/Peripheral/src/CH56x_sys.o
+                                        0x19a (size before relaxing)
  .debug_line_str
-                0x0000000000000310       0x20 build/sdk/Peripheral/src/CH56x_uart.o
-                                         0x84 (size before relaxing)
+                0x0000000000000472       0x21 build/sdk/Peripheral/src/CH56x_timer.o
+                                         0xa9 (size before relaxing)
+ .debug_line_str
+                0x0000000000000493       0x20 build/sdk/Peripheral/src/CH56x_uart.o
+                                         0x8e (size before relaxing)
 
-.comment        0x0000000000000000       0x66
+.comment        0x0000000000000000       0x99
  .comment       0x0000000000000000       0x33 build/src/Main.o
                                          0x34 (size before relaxing)
- .comment       0x0000000000000033       0x34 build/src/CH56x_usb30.o
- .comment       0x0000000000000033       0x34 build/src/CH56x_usb20.o
- .comment       0x0000000000000033       0x34 build/src/SW_UDISK.o
- .comment       0x0000000000000033       0x34 build/src/SD.o
- .comment       0x0000000000000033       0x34 build/src/sd_storage.o
- .comment       0x0000000000000033       0x34 build/src/cdc_uart.o
- .comment       0x0000000000000033       0x34 build/src/ownership.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_clk.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_emmc.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_gpio.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_sys.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_timer.o
- .comment       0x0000000000000033       0x34 build/sdk/Peripheral/src/CH56x_uart.o
- .comment       0x0000000000000033       0x33 sdk/USB30Lib/libCH56x_USB30_device_lib.a(usb30_int.o)
+ .comment       0x0000000000000033       0x33 build/src/CH56x_usb30.o
                                          0x34 (size before relaxing)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-impure.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
- .comment       0x0000000000000066       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
+ .comment       0x0000000000000066       0x34 build/src/CH56x_usb20.o
+ .comment       0x0000000000000066       0x34 build/src/SW_UDISK.o
+ .comment       0x0000000000000066       0x34 build/src/SD.o
+ .comment       0x0000000000000066       0x34 build/src/sd_storage.o
+ .comment       0x0000000000000066       0x34 build/src/cdc_uart.o
+ .comment       0x0000000000000066       0x34 build/src/debug_cdc.o
+ .comment       0x0000000000000066       0x34 build/src/ownership.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_clk.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_emmc.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_gpio.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_sys.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_timer.o
+ .comment       0x0000000000000066       0x34 build/sdk/Peripheral/src/CH56x_uart.o
+ .comment       0x0000000000000066       0x33 sdk/USB30Lib/libCH56x_USB30_device_lib.a(usb30_int.o)
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-impure.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
+ .comment       0x0000000000000099       0x34 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/src/Main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/src/CH56x_usb20.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/src/debug_cdc.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/src/ownership.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_clk.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_emmc.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_gpio.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_sys.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_timer.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/sdk/Peripheral/src/CH56x_uart.o
 
 .riscv.attributes
-                0x0000000000000000       0x38
+                0x0000000000000000       0x5b
  .riscv.attributes
-                0x0000000000000000       0x34 build/src/Main.o
+                0x0000000000000000       0x57 build/src/Main.o
  .riscv.attributes
-                0x0000000000000034       0x38 build/src/CH56x_usb30.o
+                0x0000000000000057       0x38 build/src/CH56x_usb30.o
  .riscv.attributes
-                0x000000000000006c       0x38 build/src/CH56x_usb20.o
+                0x000000000000008f       0x5b build/src/CH56x_usb20.o
  .riscv.attributes
-                0x00000000000000a4       0x38 build/src/SW_UDISK.o
+                0x00000000000000ea       0x38 build/src/SW_UDISK.o
  .riscv.attributes
-                0x00000000000000dc       0x34 build/src/SD.o
+                0x0000000000000122       0x34 build/src/SD.o
  .riscv.attributes
-                0x0000000000000110       0x34 build/src/sd_storage.o
+                0x0000000000000156       0x34 build/src/sd_storage.o
  .riscv.attributes
-                0x0000000000000144       0x38 build/src/cdc_uart.o
+                0x000000000000018a       0x38 build/src/cdc_uart.o
  .riscv.attributes
-                0x000000000000017c       0x34 build/src/ownership.o
+                0x00000000000001c2       0x57 build/src/debug_cdc.o
  .riscv.attributes
-                0x00000000000001b0       0x34 build/sdk/Peripheral/src/CH56x_clk.o
+                0x0000000000000219       0x57 build/src/ownership.o
  .riscv.attributes
-                0x00000000000001e4       0x34 build/sdk/Peripheral/src/CH56x_emmc.o
+                0x0000000000000270       0x57 build/sdk/Peripheral/src/CH56x_clk.o
  .riscv.attributes
-                0x0000000000000218       0x34 build/sdk/Peripheral/src/CH56x_gpio.o
+                0x00000000000002c7       0x57 build/sdk/Peripheral/src/CH56x_emmc.o
  .riscv.attributes
-                0x000000000000024c       0x34 build/sdk/Peripheral/src/CH56x_sys.o
+                0x000000000000031e       0x57 build/sdk/Peripheral/src/CH56x_gpio.o
  .riscv.attributes
-                0x0000000000000280       0x34 build/sdk/Peripheral/src/CH56x_timer.o
+                0x0000000000000375       0x57 build/sdk/Peripheral/src/CH56x_sys.o
  .riscv.attributes
-                0x00000000000002b4       0x34 build/sdk/Peripheral/src/CH56x_uart.o
+                0x00000000000003cc       0x57 build/sdk/Peripheral/src/CH56x_timer.o
  .riscv.attributes
-                0x00000000000002e8       0x36 build/sdk/Startup/startup_CH56x.o
+                0x0000000000000423       0x57 build/sdk/Peripheral/src/CH56x_uart.o
  .riscv.attributes
-                0x000000000000031e       0x29 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memcpy-asm.o)
+                0x000000000000047a       0x59 build/sdk/Startup/startup_CH56x.o
  .riscv.attributes
-                0x0000000000000347       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
+                0x00000000000004d3       0x29 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memcpy-asm.o)
  .riscv.attributes
-                0x0000000000000372       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
+                0x00000000000004fc       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-printf.o)
  .riscv.attributes
-                0x000000000000039d       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
+                0x0000000000000527       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-puts.o)
  .riscv.attributes
-                0x00000000000003c8       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
+                0x0000000000000552       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wbuf.o)
  .riscv.attributes
-                0x00000000000003f3       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
+                0x000000000000057d       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-wsetup.o)
  .riscv.attributes
-                0x000000000000041e       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
+                0x00000000000005a8       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fflush.o)
  .riscv.attributes
-                0x0000000000000449       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
+                0x00000000000005d3       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-findfp.o)
  .riscv.attributes
-                0x0000000000000474       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-impure.o)
+                0x00000000000005fe       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fwalk.o)
  .riscv.attributes
-                0x000000000000049f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
+                0x0000000000000629       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-impure.o)
  .riscv.attributes
-                0x00000000000004ca       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
+                0x0000000000000654       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lock.o)
  .riscv.attributes
-                0x00000000000004f5       0x29 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memset.o)
+                0x000000000000067f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-makebuf.o)
  .riscv.attributes
-                0x000000000000051e       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
+                0x00000000000006aa       0x29 /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memset.o)
  .riscv.attributes
-                0x0000000000000549       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000000006d3       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-freer.o)
  .riscv.attributes
-                0x0000000000000574       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000000006fe       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-mallocr.o)
  .riscv.attributes
-                0x000000000000059f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000000000729       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf.o)
  .riscv.attributes
-                0x00000000000005ca       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
+                0x0000000000000754       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-nano-vfprintf_i.o)
  .riscv.attributes
-                0x00000000000005f5       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
+                0x000000000000077f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-sbrkr.o)
  .riscv.attributes
-                0x0000000000000620       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
+                0x00000000000007aa       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-stdio.o)
  .riscv.attributes
-                0x000000000000064b       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
+                0x00000000000007d5       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-writer.o)
  .riscv.attributes
-                0x0000000000000676       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
+                0x0000000000000800       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-closer.o)
  .riscv.attributes
-                0x00000000000006a1       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
+                0x000000000000082b       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-fstatr.o)
  .riscv.attributes
-                0x00000000000006cc       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
+                0x0000000000000856       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-isattyr.o)
  .riscv.attributes
-                0x00000000000006f7       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
+                0x0000000000000881       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-lseekr.o)
  .riscv.attributes
-                0x0000000000000722       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
+                0x00000000000008ac       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-memchr.o)
  .riscv.attributes
-                0x000000000000074d       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
+                0x00000000000008d7       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-mlock.o)
  .riscv.attributes
-                0x0000000000000778       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
+                0x0000000000000902       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-readr.o)
  .riscv.attributes
-                0x00000000000007a3       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
+                0x000000000000092d       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libc_nano.a(lib_a-reent.o)
  .riscv.attributes
-                0x00000000000007ce       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
+                0x0000000000000958       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(close.o)
  .riscv.attributes
-                0x00000000000007f9       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
+                0x0000000000000983       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(fstat.o)
  .riscv.attributes
-                0x0000000000000824       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
+                0x00000000000009ae       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(isatty.o)
  .riscv.attributes
-                0x000000000000084f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
+                0x00000000000009d9       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(lseek.o)
  .riscv.attributes
-                0x000000000000087a       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
+                0x0000000000000a04       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(read.o)
+ .riscv.attributes
+                0x0000000000000a2f       0x2b /opt/xpack/bin/../lib/gcc/riscv-none-elf/12.2.0/../../../../riscv-none-elf/lib/libnosys.a(sbrk.o)
 
-.debug_frame    0x0000000000000000     0x1204
- .debug_frame   0x0000000000000000       0x50 build/src/Main.o
- .debug_frame   0x0000000000000050      0x36c build/src/CH56x_usb30.o
- .debug_frame   0x00000000000003bc      0x114 build/src/CH56x_usb20.o
- .debug_frame   0x00000000000004d0      0x2b4 build/src/SW_UDISK.o
- .debug_frame   0x0000000000000784      0x148 build/src/SD.o
- .debug_frame   0x00000000000008cc       0xa0 build/src/sd_storage.o
- .debug_frame   0x000000000000096c       0xfc build/src/cdc_uart.o
- .debug_frame   0x0000000000000a68       0x9c build/src/ownership.o
- .debug_frame   0x0000000000000b04       0x30 build/sdk/Peripheral/src/CH56x_clk.o
- .debug_frame   0x0000000000000b34      0x2d8 build/sdk/Peripheral/src/CH56x_emmc.o
- .debug_frame   0x0000000000000e0c       0x70 build/sdk/Peripheral/src/CH56x_gpio.o
- .debug_frame   0x0000000000000e7c       0xc8 build/sdk/Peripheral/src/CH56x_sys.o
- .debug_frame   0x0000000000000f44       0xf0 build/sdk/Peripheral/src/CH56x_timer.o
- .debug_frame   0x0000000000001034      0x1d0 build/sdk/Peripheral/src/CH56x_uart.o
+.debug_frame    0x0000000000000000     0x1200
+ .debug_frame   0x0000000000000000       0x4c build/src/Main.o
+ .debug_frame   0x000000000000004c      0x378 build/src/CH56x_usb30.o
+ .debug_frame   0x00000000000003c4      0x100 build/src/CH56x_usb20.o
+ .debug_frame   0x00000000000004c4      0x24c build/src/SW_UDISK.o
+ .debug_frame   0x0000000000000710      0x194 build/src/SD.o
+ .debug_frame   0x00000000000008a4       0x74 build/src/sd_storage.o
+ .debug_frame   0x0000000000000918       0xfc build/src/cdc_uart.o
+ .debug_frame   0x0000000000000a14       0x54 build/src/debug_cdc.o
+ .debug_frame   0x0000000000000a68       0xac build/src/ownership.o
+ .debug_frame   0x0000000000000b14       0x30 build/sdk/Peripheral/src/CH56x_clk.o
+ .debug_frame   0x0000000000000b44      0x2cc build/sdk/Peripheral/src/CH56x_emmc.o
+ .debug_frame   0x0000000000000e10       0x70 build/sdk/Peripheral/src/CH56x_gpio.o
+ .debug_frame   0x0000000000000e80       0xc0 build/sdk/Peripheral/src/CH56x_sys.o
+ .debug_frame   0x0000000000000f40       0xf0 build/sdk/Peripheral/src/CH56x_timer.o
+ .debug_frame   0x0000000000001030      0x1d0 build/sdk/Peripheral/src/CH56x_uart.o

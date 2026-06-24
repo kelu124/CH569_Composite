@@ -35,9 +35,7 @@ static void ownership_claim(void)
     PRINT("OWN: claiming SD card (PB10 high)\n");
     GPIOB_SetBits(PB10_PIN);
     own_ch569_owns = 1;
-    PRINT("OWN: PB10 set\n");  while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
-    mDelaymS(PB10_SETTLE_MS);
-    PRINT("OWN: settled\n");   while(!(R8_UART1_LSR & RB_LSR_TX_ALL_EMP));
+    mDelaymS(PB10_SETTLE_MS);          /* no ACK from FPGA: assert and proceed */
 
     for(attempt = 0; attempt < SD_MOUNT_RETRIES; attempt++)
     {
@@ -68,9 +66,6 @@ static void ownership_claim(void)
         own_card_ready = 0;
         Udisk_Status &= ~DEF_UDISK_EN_FLAG;
     }
-
-    msc_read_selftest();
-
 }
 
 static void ownership_release(void)

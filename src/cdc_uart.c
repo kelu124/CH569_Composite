@@ -130,8 +130,10 @@ static void U30_CDC_UartRx_Deal(void)
  * @fn        U30_CDC_UartTx_Deal
  *
  * @brief     USB host -> UART(FPGA): drain EP4 OUT data into UART2, one byte
- *            per pass. OWNERSHIP_TOGGLE_CHAR is consumed and toggles PB10
- *            instead of being forwarded (client-requested bring-up control).
+ *            per pass. ALL bytes are forwarded verbatim — there is no magic
+ *            data byte. SD ownership changes only via the EP0 vendor request
+ *            BRIDGE_REQ_SD_OWNER, never via the data stream (a probe byte must
+ *            never tear down a live mass-storage device).
  ******************************************************************************/
 static void U30_CDC_UartTx_Deal(void)
 {
@@ -139,11 +141,7 @@ static void U30_CDC_UartTx_Deal(void)
     {
         UINT8 ch = endp4Rxbuff[USBBufOutPoint++];
         USBByteCount--;
-
-        if(ch == OWNERSHIP_TOGGLE_CHAR)
-            ownership_request(OWN_REQ_TOGGLE);
-        else
-            UART2_SendString(&ch, 1);
+        UART2_SendString(&ch, 1);          /* forward ALL bytes; no magic 't' */
     }
 
     if(DownloadPoint4_Busy == 0)

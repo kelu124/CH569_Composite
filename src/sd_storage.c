@@ -6,6 +6,7 @@
 #include "sd_storage.h"
 #include "SD.h"
 #include "SW_UDISK.h"
+#include "bridge_config.h"    /* MSC_EMMC_GUARD */
 
 /* Scratch for the SCR read at the end of card init (DMA target). */
 __attribute__((aligned(16))) static UINT8 sd_scratch[512] __attribute__((section(".DMADATA")));
@@ -71,12 +72,9 @@ static UINT8 sd_card_init(UINT8 mode)
     for(i = 0; i < 3; i++)
     {
         EMMCSendCmd(0x01AA, RB_EMMC_CKIDX | RB_EMMC_CKCRC | RESP_TYPE_48 | EMMC_CMD8);
-        while(1)
-        {
-            sta = CheckCMDComp(&TF_EMMCParam);
-            if(sta != CMD_NULL)
-                break;
-        }
+        { UINT32 g = MSC_EMMC_GUARD;
+          while( (sta = CheckCMDComp(&TF_EMMCParam)) == CMD_NULL )
+              if( --g == 0 ) { sta = CMD_FAILED; break; } }
         if(sta == CMD_SUCCESS)
             break;
         mDelaymS(30);

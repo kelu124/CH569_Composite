@@ -135,6 +135,7 @@ extern volatile uint32_t Udisk_Capability;
 
 extern volatile uint8_t UDISK_OutPackflag;
 extern volatile uint8_t UDISK_InPackflag;
+extern volatile uint16_t UDISK_Out_Pack_Len;
 
 
 extern uint8_t  UDISK_Inquity_Tab[ ];

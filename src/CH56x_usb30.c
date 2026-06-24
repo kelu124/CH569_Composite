@@ -92,7 +92,7 @@ const UINT8 SS_ConfigDescriptor[] =
 
     /* EP3 OUT (MSC data out) */
     0x07, 0x05, 0x03, 0x02, 0x00, 0x04, 0x00,   // bulk, 1024B
-    0x06, 0x30, 0x03, 0x00, 0x00, 0x00,         // companion: burst 3 (vendor)
+    0x06, 0x30, 0x00, 0x00, 0x00, 0x00,         // companion: burst 0 (=1 pkt), matches DEF_ENDP3_OUT_BURST_LEVEL
 
     /* ------------- Interface Association: CDC (IF1 + IF2) --------------- */
     0x08,                  // bLength
@@ -226,12 +226,11 @@ const UINT8 BOSDescriptor[] =
     0x0a, 0x10, 0x03, 0x00,
     0x0e, 0x00,            // ss/hs/fs supported
     0x01,                  // lowest speed full-speed
-    0x00,                  // bU1DevExitLat = 0: U1 not supported
-    0x00, 0x00             // wU2DevExitLat = 0: U2 not supported
-    /* U1/U2 disabled on purpose: with them advertised, Linux xHCI repeatedly
-     * fails to set the link PM state on this device ("Set PM failed", "Disable
-     * of device-initiated U1/U2 failed") and resets it in a loop. Declaring no
-     * U1/U2 support keeps the SuperSpeed link stable. */
+    0x0a,                  // bU1DevExitLat <= 10us
+    0xff, 0x07             // wU2DevExitLat <= 0x07FF us
+    /* Non-zero U1/U2 exit latencies: zeroed values are an invalid descriptor and
+     * make the host log "LPM exit latency is zeroed, disabling LPM". LPM still
+     * ends up disabled by the host on this device, but the descriptor is valid. */
 };
 
 /*******************************************************************************
@@ -892,6 +891,7 @@ void EP3_OUT_Callback(void)
     uint8_t nump;
 
     USB30_OUT_Status(ENDP_3, &nump, &len, NULL);
+    UDISK_Out_Pack_Len = len;            /* hand the length to UDISK_Down_OnePack */
     USB30_OUT_ClearIT(ENDP_3);
 
     USBSS->UEP3_RX_DMA = (UINT32)(UINT8 *)UDisk_Out_Buf;

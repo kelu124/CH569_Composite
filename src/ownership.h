@@ -7,10 +7,10 @@
  * after asserting PB10 the firmware waits PB10_SETTLE_MS and then (re)inits
  * the card ("assert and proceed", agreed with the client).
  *
- * Requests can arrive from interrupt context (EP0 vendor request) or from the
- * CDC byte stream ('t'); the actual claim/release — which includes a slow SD
- * re-init — only ever runs from ownership_poll() in the main loop, so it can
- * never preempt an in-flight MSC transfer.
+ * Requests arrive from interrupt context (the EP0 vendor request); the actual
+ * claim/release — which includes a slow SD re-init — only ever runs from
+ * ownership_poll() in the main loop, so it can never preempt an in-flight MSC
+ * transfer.
  *******************************************************************************/
 #ifndef OWNERSHIP_H_
 #define OWNERSHIP_H_

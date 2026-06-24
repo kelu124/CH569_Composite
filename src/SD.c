@@ -13,6 +13,7 @@
 
 #include "SD.h"
 #include "CH56x_common.h"
+#include "bridge_config.h"    /* MSC_EMMC_GUARD */
 
 /***************************************************************
  * @fn        SDReadOCR
@@ -31,6 +32,8 @@ UINT8 SDReadOCR( PSD_PARAMETER pEMMCPara )
 	UINT16 cmd_set_val;
 	UINT8  sta = 0;
 	UINT32 cmd_rsp_val;                 //command returned value
+	UINT32 last_rsp3 = 0;               //Step 8 diagnostic: last OCR response
+	UINT8  last_sta  = 0xFF;            //Step 8 diagnostic: last ACMD41 status
 
 	for(i=0; i<100; i++)
 	{
@@ -41,11 +44,10 @@ UINT8 SDReadOCR( PSD_PARAMETER pEMMCPara )
 					  55;               //command's index this moment
 		EMMCSendCmd(cmd_arg_val,  cmd_set_val);
 		mDelayuS(2);
-		while(1)
-		{
-			sta = CheckCMDComp( pEMMCPara );
-			if( sta!= CMD_NULL ) 	break;
-		}
+		/* Bounded wait (Step 4): a card that never answers must fail, not hang. */
+		{ UINT32 g = MSC_EMMC_GUARD;
+		  while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+		      if( --g == 0 ) { sta = CMD_FAILED; break; } }
         if(sta == CMD_FAILED)
         {
             mDelaymS(20);
@@ -58,14 +60,19 @@ UINT8 SDReadOCR( PSD_PARAMETER pEMMCPara )
                       41;               //The index number of the currently sent command
         EMMCSendCmd(cmd_arg_val,  cmd_set_val);
         mDelayuS(2);
-        while(1)
-        {
-            sta = CheckCMDComp( pEMMCPara );
-            if( sta!= CMD_NULL )    break;
-        }
+        /* Bounded wait (Step 4). */
+        { UINT32 g = MSC_EMMC_GUARD;
+          while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+              if( --g == 0 ) { sta = CMD_FAILED; break; } }
+
+        /* Step 8 diagnostic: remember the last attempt; do NOT print in-loop
+         * (in-loop UART writes corrupt and stretch the trace). */
+        last_sta  = sta;
+        last_rsp3 = R32_EMMC_RESPONSE3;
+
         if(sta == CMD_SUCCESS)
         {
-            cmd_rsp_val = R32_EMMC_RESPONSE3 ;
+            cmd_rsp_val = last_rsp3;
             if(cmd_rsp_val & (1<<31))                                       // Card initialization complete
             {
                 if(cmd_rsp_val & (1<<30))
@@ -82,7 +89,15 @@ UINT8 SDReadOCR( PSD_PARAMETER pEMMCPara )
         }
         mDelaymS(20);
 	}
-	if(i == 100)		return OP_FAILED;
+
+	/* Report the ACMD41 outcome exactly once, then drain UART1 so the line
+	 * survives a subsequent hang. sta never CMD_SUCCESS -> CMD41 not completing;
+	 * CMD_SUCCESS but rsp3 bit31 clear -> card busy/never finishes power-up. */
+	PRINT("\r\n@@@ A41 i=%d sta=%d rsp3=%08lx @@@\r\n",
+	      (int)i, (int)last_sta, (unsigned long)last_rsp3);
+	while( !(R8_UART1_LSR & RB_LSR_TX_ALL_EMP) );
+
+	if(i >= 100)		return OP_FAILED;   //ensure the loop actually gives up
 
 	return sta;
 }
@@ -109,11 +124,9 @@ UINT8 SDSetRCA( PSD_PARAMETER pEMMCPara )
 				  RESP_TYPE_48  |
 				  EMMC_CMD3;
 	EMMCSendCmd(cmd_arg_val,cmd_set_val);
-	while(1)
-	{
-		sta = CheckCMDComp( pEMMCPara );
-		if( sta != CMD_NULL ) break;
-	}
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+	      if( --g == 0 ) { sta = CMD_FAILED; break; } }
 	if(sta == CMD_SUCCESS)
 	{
 		pEMMCPara->EMMC_RCA = R32_EMMC_RESPONSE3 >> 16;
@@ -144,11 +157,9 @@ UINT8 SDReadCSD( PSD_PARAMETER pEMMCPara )
 				  RESP_TYPE_136 |
 				  EMMC_CMD9;
 	EMMCSendCmd(cmd_arg_val, cmd_set_val);
-	while(1)
-	{
-		sta = CheckCMDComp( pEMMCPara );
-		if( sta != CMD_NULL ) break;
-	}
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+	      if( --g == 0 ) { sta = CMD_FAILED; break; } }
 
 	if(sta == CMD_SUCCESS)
 	{
@@ -200,11 +211,9 @@ UINT8 SDSetBusWidth(PSD_PARAMETER pEMMCPara, UINT8 bus_mode)
                   RESP_TYPE_48  |            //expected response type
                   55;                        //The index number of the currently sent command
     EMMCSendCmd(cmd_arg_val,cmd_set_val);
-    while(1)
-    {
-        sta = CheckCMDComp( pEMMCPara );
-        if( sta != CMD_NULL ) break;
-    }
+    { UINT32 g = MSC_EMMC_GUARD;
+      while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+          if( --g == 0 ) { sta = CMD_FAILED; break; } }
     if(sta == CMD_SUCCESS)
     {
         if(bus_mode == 0)
@@ -217,11 +226,9 @@ UINT8 SDSetBusWidth(PSD_PARAMETER pEMMCPara, UINT8 bus_mode)
                       RESP_TYPE_48  |        //expected response type
                       EMMC_CMD6;             //The index number of the currently sent command
         EMMCSendCmd(cmd_arg_val, cmd_set_val);
-        while(1)
-        {
-            sta = CheckCMDComp( pEMMCPara );
-            if( sta != CMD_NULL ) break;
-        }
+        { UINT32 g = MSC_EMMC_GUARD;
+          while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+              if( --g == 0 ) { sta = CMD_FAILED; break; } }
     }
 	return sta;
 }
@@ -249,12 +256,9 @@ UINT8 SD_ReadSCR(PSD_PARAMETER pEMMCPara, PUINT8 pRdatbuf)
                   RESP_TYPE_48  |               //expected response type
                   55;                           //The index number of the currently sent command
     EMMCSendCmd(cmd_arg_val,cmd_set_val);
-    while(1)
-    {
-        sta = CheckCMDComp( pEMMCPara );
-        if( sta != CMD_NULL )
-            break;
-    }
+    { UINT32 g = MSC_EMMC_GUARD;
+      while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+          if( --g == 0 ) { sta = CMD_FAILED; break; } }
 
     if(sta == CMD_SUCCESS)
     {
@@ -269,19 +273,12 @@ UINT8 SD_ReadSCR(PSD_PARAMETER pEMMCPara, PUINT8 pRdatbuf)
                       RESP_TYPE_48  |            // expected response type
                       51;                        // The index number of the currently sent command
         EMMCSendCmd(  cmd_arg_val, cmd_set_val );
-        while(1)
-        {
-            sta = CheckCMDComp( pEMMCPara );
-            if( sta != CMD_NULL )
-                break;
-        }
-        while( 1 )
-        {
-            if( R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE )
-            {
-                break;
-            }
-        }
+        { UINT32 g = MSC_EMMC_GUARD;
+          while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+              if( --g == 0 ) { sta = CMD_FAILED; break; } }
+        { UINT32 g = MSC_EMMC_GUARD;
+          while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
+              if( --g == 0 ) { sta = CMD_FAILED; break; } }
         t=R16_EMMC_INT_FG;
         R16_EMMC_INT_FG = t;
     }
@@ -309,7 +306,9 @@ UINT8 SDCardReadOneSec( PSD_PARAMETER pEMMCPara, PUINT8 pRdatbuf, UINT32 Lbaaddr
 	if(Lbaaddr > (pEMMCPara->EMMCSecNum))
 	    return  OP_INVALID_ADD;
 
-    while(!(R32_EMMC_STATUS & (1<<17)));
+    { UINT32 g = MSC_EMMC_GUARD;
+      while(!(R32_EMMC_STATUS & (1<<17)))
+          if( --g == 0 ) return OP_FAILED; }
 
     R32_EMMC_DMA_BEG1 = (UINT32)pRdatbuf;
     R32_EMMC_TRAN_MODE = 0;
@@ -324,14 +323,10 @@ UINT8 SDCardReadOneSec( PSD_PARAMETER pEMMCPara, PUINT8 pRdatbuf, UINT32 Lbaaddr
 	EMMCSendCmd(cmd_arg_val, cmd_set_val);
 
 	/*R32_EMMC_TRAN_MODE |= RB_EMMC_GAP_STOP*/
-	while(1)
-	{
-		if(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE)
-		{
-		    R16_EMMC_INT_FG = RB_EMMC_IF_CMDDONE|RB_EMMC_IF_TRANDONE;
-		    break;
-		}
-	}
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while( !(R16_EMMC_INT_FG & RB_EMMC_IF_TRANDONE) )
+	      if( --g == 0 ) return OP_FAILED; }
+	R16_EMMC_INT_FG = RB_EMMC_IF_CMDDONE|RB_EMMC_IF_TRANDONE;
 	return 	OP_SUCCESS;
 }
 
@@ -357,7 +352,9 @@ UINT8 SDCardWriteONESec( PSD_PARAMETER pEMMCPara,  PUINT8 pWdatbuf, UINT32 Lbaad
 	if(Lbaaddr > (pEMMCPara->EMMCSecNum))
 	    return  OP_INVALID_ADD;
 
-    while(!(R32_EMMC_STATUS & (1<<17)));
+    { UINT32 g = MSC_EMMC_GUARD;
+      while(!(R32_EMMC_STATUS & (1<<17)))
+          if( --g == 0 ) return OP_FAILED; }
 
     //cmd25
 	cmd_arg_val = Lbaaddr;
@@ -366,12 +363,9 @@ UINT8 SDCardWriteONESec( PSD_PARAMETER pEMMCPara,  PUINT8 pWdatbuf, UINT32 Lbaad
 				  RESP_TYPE_48  |
 				  EMMC_CMD25;
 	EMMCSendCmd(cmd_arg_val, cmd_set_val);
-	while(1)
-	{
-		sta = CheckCMDComp( pEMMCPara );
-		if( sta != CMD_NULL )
-		    break;
-	}
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+	      if( --g == 0 ) { sta = CMD_FAILED; break; } }
 
 	if( sta == CMD_FAILED )
 	{	//The operation failed
@@ -383,8 +377,9 @@ UINT8 SDCardWriteONESec( PSD_PARAMETER pEMMCPara,  PUINT8 pWdatbuf, UINT32 Lbaad
 	R32_EMMC_DMA_BEG1 = (UINT32)pWdatbuf;
 	R32_EMMC_BLOCK_CFG = (pEMMCPara->EMMCSecSize)<<16 | 1;
 
-	while(1)
-	{
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while(1)
+	  {
 		if(R16_EMMC_INT_FG & RB_EMMC_IF_BKGAP)
 		{
 			R16_EMMC_INT_FG = RB_EMMC_IF_BKGAP;
@@ -403,12 +398,12 @@ UINT8 SDCardWriteONESec( PSD_PARAMETER pEMMCPara,  PUINT8 pWdatbuf, UINT32 Lbaad
 		}
 		if( pEMMCPara->EMMCOpErr )
 		    return CMD_FAILED;
-	}
-	while(1)
-	{
-		sta = CheckCMDComp( pEMMCPara );
-		if( sta != CMD_NULL ) break;
-	}
+		if( --g == 0 )
+		    return OP_FAILED;
+	  } }
+	{ UINT32 g = MSC_EMMC_GUARD;
+	  while( (sta = CheckCMDComp( pEMMCPara )) == CMD_NULL )
+	      if( --g == 0 ) { sta = CMD_FAILED; break; } }
 	R16_EMMC_INT_FG = RB_EMMC_IF_CMDDONE;
 	return 	sta;
 }
